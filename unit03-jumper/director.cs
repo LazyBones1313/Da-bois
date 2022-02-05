@@ -8,7 +8,15 @@ public class Director
     {
         
     }
-
+    public void StartGame() 
+    {
+        while (isPlaying && score != 0)
+        {
+            GetInputs();
+            CompareCards();
+            DoOutputs();
+        }
+    }
     public void StartGame()
     {
         Console.WriteLine("This is a game");

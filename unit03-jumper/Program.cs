@@ -1,17 +1,8 @@
-﻿using System;
-
-namespace unit03_jumper
+﻿class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("    -----");
-            Console.WriteLine("    |   |");
-            Console.WriteLine("    |");
-            Console.WriteLine("    |");
-            Console.WriteLine("    |");
-            Console.WriteLine("___________");
-        }
+        Director director = new Director();
+        director.StartGame();
     }
 }

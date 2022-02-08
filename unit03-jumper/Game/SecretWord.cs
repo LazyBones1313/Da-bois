@@ -14,17 +14,4 @@ public class SecretWord
         int aWord = random.Next(1,10);
         return aWord;
     }
-
-    public string convert()
-    {
-        if (currentWord == 1)
-        {
-            
-        }
-        else
-        {
-            return "h";
-        }
-    }
-
 }

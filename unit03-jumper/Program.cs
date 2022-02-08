@@ -1,10 +1,14 @@
-﻿
+﻿using unit03_jumper.Game;
 
-class Program
+namespace unit03_jumper
 {
-    static void Main(string[] args)
+    class Program
     {
-        Director director = new Director();
-        director.StartGame();
+        static void Main(string[] args)
+        {
+            Director director = new Director();
+            director.StartGame();
+        }
     }
 }
+

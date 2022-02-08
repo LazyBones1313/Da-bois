@@ -1,30 +1,37 @@
-public class SecretWord
+using System;
+using System.Collections.Generic;
+
+namespace unit03_jumper.Game
 {
-    public int currentWord = 0;
-    public int currentWord2 = 0;
-
-    public SecretWord()
+    public class SecretWord
     {
-        
-    }
+        public int currentWord = 0;
+        public int currentWord2 = 0;
 
-    public int Pick()
-    {
-        Random random = new Random();
-        int aWord = random.Next(1,10);
-        return aWord;
-    }
-
-    public string convert()
-    {
-        if (currentWord == 1)
+        public SecretWord()
         {
             
         }
-        else
-        {
-            return "h";
-        }
-    }
 
+        public int Pick()
+        {
+            Random random = new Random();
+            int aWord = random.Next(1,10);
+            return aWord;
+        }
+
+        public int convert()
+        {
+            if (currentWord == 1)
+            {
+                
+            }
+            else
+            {
+                return "h";
+            }
+        }
+
+    }   
 }
+

@@ -1,15 +1,20 @@
 using System;
+using System.Collections.Generic;
 
-public class Director
+namespace unit03_jumper.Game
 {
-    string userChoice = "";
-    Hangman hangman = new Hangman();
-    SecretWord word = new SecretWord();
-    bool isPlaying = true;
-    string keepPlaying = "";
-
-    public void StartGame()
+    public class Director
     {
-        Console.WriteLine("This is a game");
-    }
+        string userChoice = "";
+        Hangman hangman = new Hangman();
+        SecretWord word = new SecretWord();
+        bool isPlaying = true;
+        string keepPlaying = "";
+
+        public void StartGame()
+        {
+            Console.WriteLine("This is a game");
+        }
+    }  
 }
+

@@ -20,17 +20,17 @@ namespace unit03_jumper.Game
             return aWord;
         }
 
-        public int convert()
-        {
-            if (currentWord == 1)
-            {
+        // public int convert()
+        // {
+        //     if (currentWord == 1)
+        //     {
                 
-            }
-            else
-            {
-                return "h";
-            }
-        }
+        //     }
+        //     else
+        //     {
+        //         return "h";
+        //     }
+        // }
 
     }   
 }

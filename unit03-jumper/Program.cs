@@ -10,8 +10,4 @@ namespace unit03_jumper
             director.StartGame();
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 7afa00c933b1eca6b3ef0e70d0db895148e2aef2

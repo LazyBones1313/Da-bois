@@ -8,6 +8,11 @@ namespace unit03_jumper.Game
         private int _hangman = 0;
         public Hangman()
         {
+
+        }
+
+        public void Display()
+        {
             if (_hangman == 0)
             {
                 Console.WriteLine("   _______");
@@ -73,6 +78,11 @@ namespace unit03_jumper.Game
                 Console.WriteLine();
                 Console.WriteLine("You lose!");
             }
+        }
+
+        public void AddLimb()
+        {
+            _hangman = _hangman + 1;
         }
         public bool IsDead()
         {

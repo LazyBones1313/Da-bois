@@ -67,11 +67,4 @@ public class Hangman
             Console.WriteLine("_______");
         }
     }
-    public void Meem()
-    {
-        if (_hangman == 0)
-        {
-            Console.WriteLine("Meem 2");
-        }
-    }
 }

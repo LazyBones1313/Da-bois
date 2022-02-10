@@ -10,6 +10,10 @@ namespace unit03_jumper.Game
         SecretWord word = new SecretWord();
         bool isPlaying = true;
         string keepPlaying = "";
+        public Director()
+        {
+            
+        }
 
         public void StartGame()
         {

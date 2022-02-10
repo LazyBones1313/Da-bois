@@ -5,7 +5,7 @@ namespace unit03_jumper.Game
 {
     public class SecretWord
     {
-        private string _fileName;
+        private const string FileName = "Game/words.txt";
 
         private List<string> _wordList = new List<string>();
         private List<string> _guessedLetters = new List<string>();
@@ -14,14 +14,11 @@ namespace unit03_jumper.Game
 
         public SecretWord()
         {
-            _fileName = "Game/words.txt";
-            UploadListFromTxt(_fileName);
-            Pick();
+            UploadListFromTxt(FileName);
         }
 
         private void UploadListFromTxt(string file)
         {
-
             string[] lines = System.IO.File.ReadAllLines(file);
             foreach (string line in lines)
             {

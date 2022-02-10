@@ -23,10 +23,12 @@ namespace unit03_jumper.Game
                 {
                     isPlaying = false;
                 }
+                hangman.Display();
                 word.Pick();
                 word.IsFound();
-                Console.WriteLine("Choose a letter from the alphabet ");
+                Console.WriteLine("\n\nChoose a letter from the alphabet ");
                 userChoice = Console.ReadLine();
+                
             }
         }
     }  

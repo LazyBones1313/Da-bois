@@ -46,14 +46,20 @@ namespace unit03_jumper.Game
                 Console.Write("_ ");
             }
         }
-        
-        public void AddLetter(string letter)
+        public void addletter(string letter)
         {
             _guessedLetters.Add(letter);
         }
-        public void ContainsLetter()
+        public bool ContainsLetter(string letter)
         {
-            
+            if (_currentWord.Contains(letter))
+            {
+                 return true;
+            }
+            else
+            {   
+                return false;
+            }
         }
     }
 }

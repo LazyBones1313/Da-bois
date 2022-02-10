@@ -20,7 +20,7 @@ namespace unit03_jumper.Game
                 Console.WriteLine("   |   ");
                 Console.WriteLine("   |   ");
                 Console.WriteLine("   |   ");
-                Console.WriteLine("_______");
+                Console.WriteLine("_______\n");
             }
             else if (_hangman == 1)
             {
@@ -29,7 +29,7 @@ namespace unit03_jumper.Game
                 Console.WriteLine("   |     O");
                 Console.WriteLine("   |   ");
                 Console.WriteLine("   |   ");
-                Console.WriteLine("_______");
+                Console.WriteLine("_______\n");
             }
             if (_hangman == 2)
             {
@@ -38,7 +38,7 @@ namespace unit03_jumper.Game
                 Console.WriteLine("   |     O");
                 Console.WriteLine("   |     |");
                 Console.WriteLine("   |   ");
-                Console.WriteLine("_______");
+                Console.WriteLine("_______\n");
             }
             if (_hangman == 3)
             {
@@ -47,7 +47,7 @@ namespace unit03_jumper.Game
                 Console.WriteLine("   |     O");
                 Console.WriteLine(@"   |     |\");
                 Console.WriteLine("   |   ");
-                Console.WriteLine("_______");
+                Console.WriteLine("_______\n");
             }
             if (_hangman == 4)
             {
@@ -56,7 +56,7 @@ namespace unit03_jumper.Game
                 Console.WriteLine("   |     O");
                 Console.WriteLine(@"   |    /|\");
                 Console.WriteLine("   |   ");
-                Console.WriteLine("_______");
+                Console.WriteLine("_______\n");
             }
             if (_hangman == 3)
             {
@@ -65,7 +65,7 @@ namespace unit03_jumper.Game
                 Console.WriteLine("   |     O");
                 Console.WriteLine(@"   |    /|\");
                 Console.WriteLine(@"   |    /");
-                Console.WriteLine("_______");
+                Console.WriteLine("_______\n");
             }
             if (_hangman == 3)
             {
@@ -74,7 +74,7 @@ namespace unit03_jumper.Game
                 Console.WriteLine("   |     O");
                 Console.WriteLine(@"   |    /|\");
                 Console.WriteLine(@"   |    / \");
-                Console.WriteLine("_______");
+                Console.WriteLine("_______\n");
                 Console.WriteLine();
                 Console.WriteLine("You lose!");
             }

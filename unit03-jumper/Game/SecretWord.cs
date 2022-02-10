@@ -6,11 +6,12 @@ namespace unit03_jumper.Game
     public class SecretWord
     {
         private const string FileName = "Game/words.txt";
+        private const string alphabet = "Game/alphabet.txt";
 
         private List<string> _wordList = new List<string>();
         private List<string> _guessedLetters = new List<string>();
+        private List<string> letter = new List<string>();
         private string _currentWord = "";
-        public int _currentWord2 = 0;
 
         public SecretWord()
         {
@@ -34,16 +35,22 @@ namespace unit03_jumper.Game
 
         public void GetDisplay()
         {
-            // Print secret word
-            //    or
-            // Return secret word
+            Console.WriteLine(_currentWord);
         }
 
         public void IsFound()
         {
-
+            for (int i = 0; i < _currentWord.Length; i++)
+            {
+                char letter = _currentWord[i];
+                Console.Write("_ ");
+            }
         }
         
+        public void AddLetter(string letter)
+        {
+            _guessedLetters.Add(letter);
+        }
         public void ContainsLetter()
         {
             

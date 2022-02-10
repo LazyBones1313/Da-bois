@@ -17,7 +17,17 @@ namespace unit03_jumper.Game
 
         public void StartGame()
         {
-            Console.WriteLine("This is a game");
+            while (isPlaying == true)
+            {
+                if (hangman.IsDead())
+                {
+                    isPlaying = false;
+                }
+                word.Pick();
+                word.IsFound();
+                Console.WriteLine("Choose a letter from the alphabet ");
+                userChoice = Console.ReadLine();
+            }
         }
     }  
 }

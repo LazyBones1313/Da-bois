@@ -70,6 +70,19 @@ namespace unit03_jumper.Game
                 Console.WriteLine(@"   |    /|\");
                 Console.WriteLine(@"   |    / \");
                 Console.WriteLine("_______");
+                Console.WriteLine();
+                Console.WriteLine("You lose!");
+            }
+        }
+        public bool IsDead()
+        {
+            if (_hangman == 3)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

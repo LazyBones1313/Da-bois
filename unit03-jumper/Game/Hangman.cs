@@ -5,12 +5,16 @@ namespace unit03_jumper.Game
 {
     public class Hangman
     {
+        //Variables
         private int _hangman = 0;
+
+        //Constructor
         public Hangman()
         {
 
         }
-
+        
+        //Methods
         public void Display()
         {
             if (_hangman == 0)
@@ -58,7 +62,7 @@ namespace unit03_jumper.Game
                 Console.WriteLine("   |   ");
                 Console.WriteLine("_______\n");
             }
-            if (_hangman == 3)
+            if (_hangman == 5)
             {
                 Console.WriteLine("   _______");
                 Console.WriteLine("   |     |");
@@ -67,7 +71,7 @@ namespace unit03_jumper.Game
                 Console.WriteLine(@"   |    /");
                 Console.WriteLine("_______\n");
             }
-            if (_hangman == 3)
+            if (_hangman == 6)
             {
                 Console.WriteLine("   _______");
                 Console.WriteLine("   |     |");
@@ -86,7 +90,7 @@ namespace unit03_jumper.Game
         }
         public bool IsDead()
         {
-            if (_hangman == 3)
+            if (_hangman == 6)
             {
                 return true;
             }

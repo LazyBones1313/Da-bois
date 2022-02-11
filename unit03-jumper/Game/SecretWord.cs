@@ -4,19 +4,15 @@ using System.Collections.Generic;
 namespace unit03_jumper.Game
 {
     public class SecretWord
-    {
+    {  
+        //Variables
         private const string FileName = "Game/words.txt";
-        private const string alphabet = "Game/alphabet.txt";
-
         private List<string> _wordList = new List<string>();
         private List<string> _guessedLetters = new List<string>();
-        private List<string> letter = new List<string>();
         private string _currentWord = "";
 
-        public SecretWord()
-        {
-            UploadListFromTxt(FileName);
-        }
+        //Constructor
+        public SecretWord() => UploadListFromTxt(FileName);
 
         private void UploadListFromTxt(string file)
         {
@@ -26,6 +22,8 @@ namespace unit03_jumper.Game
                 _wordList.Add(line);
             }
         }
+
+        //Methods
         public void Pick()
         {
             Random random = new Random();
@@ -33,22 +31,40 @@ namespace unit03_jumper.Game
             _currentWord = _wordList[aWordIndex];
         }
 
-        public void GetDisplay()
+        public void Display()
         {
-            Console.WriteLine(_currentWord);
-        }
-
-        public void IsFound()
-        {
-            for (int i = 0; i < _currentWord.Length; i++)
+            foreach (char letter in _currentWord)
             {
-                char letter = _currentWord[i];
-                Console.Write("_ ");
+                if (_guessedLetters.Contains(letter.ToString()))
+                {
+                    Console.Write($"{letter} ");
+                }
+                else
+                {
+                    Console.Write("_ ");
+                }
             }
+            Console.WriteLine();
         }
-        public void addletter(string letter)
+        public void AddLetter(string letter)
         {
             _guessedLetters.Add(letter);
+        }
+
+        public bool IsFound()
+        {
+            foreach (char letter in _currentWord)
+            {
+                if (_guessedLetters.Contains(letter.ToString()))
+                {
+                    continue;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return true;
         }
         public bool ContainsLetter(string letter)
         {

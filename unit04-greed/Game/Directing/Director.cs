@@ -16,6 +16,11 @@ namespace Unit04_greed.Game.Directing
         private KeyboardService keyboardService = null;
         private VideoService videoService = null;
 
+        private int counter = 0;
+
+        private int frequency = 25;
+
+        
         /// <summary>
         /// Constructs a new instance of Director using the given KeyboardService and VideoService.
         /// </summary>
@@ -62,13 +67,32 @@ namespace Unit04_greed.Game.Directing
         {
             Actor banner = cast.GetFirstActor("banner");
             Actor robot = cast.GetFirstActor("robot");
-            List<Actor> artifacts = cast.GetActors("artifacts");
+            List<Actor> fallingObjects = cast.GetActors("fallingObject");
 
             banner.SetText("");
             int maxX = videoService.GetWidth();
             int maxY = videoService.GetHeight();
             robot.MoveNext(maxX, maxY);
+            foreach (Actor actor in fallingObjects)
+            {
+                actor.MoveNext(maxX, maxY);
+            }
 
+
+
+            
+            if (counter % frequency == 0)
+            {
+                //Add Falling Object to cast
+                FallingObject fallingObject = new FallingObject(10, "HI = )", new Point(0, 0), new Point(0, 2));
+                cast.AddActor("fallingObject", fallingObject);
+
+                // Reset Coounter
+                counter = 0;
+
+            }
+            counter++;
+            
             // foreach (Actor actor in artifacts)
             // {
             //     if (robot.GetPosition().Equals(actor.GetPosition()))

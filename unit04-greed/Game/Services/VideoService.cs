@@ -50,7 +50,8 @@ namespace Unit04_greed.Game.Services
         public void ClearBuffer()
         {
             Raylib.BeginDrawing();
-            Raylib.ClearBackground(Raylib_cs.Color.BLACK);
+            Raylib_cs.Color color = new Raylib_cs.Color(27, 38, 79, 255);
+            Raylib.ClearBackground(color);
             if (debug)
             {
                 DrawGrid();

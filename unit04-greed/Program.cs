@@ -23,8 +23,8 @@ namespace Unit04_greed
         private static int ROWS = 40;
         private static string CAPTION = "Greed";
         private static string DATA_PATH = "Data/messages.txt";
-        private static Color WHITE = new Color(255, 255, 255);
-        private static int DEFAULT_ARTIFACTS = 40;
+        private static Color ROBOT_COLOR = new Color(255, 255, 255);
+        // private static int DEFAULT_ARTIFACTS = 40;
 
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Unit04_greed
             Actor banner = new Actor();
             banner.SetText("");
             banner.SetFontSize(FONT_SIZE);
-            banner.SetColor(WHITE);
+            banner.SetColor(ROBOT_COLOR);
             banner.SetPosition(new Point(CELL_SIZE, 0));
             cast.AddActor("banner", banner);
 
@@ -48,7 +48,7 @@ namespace Unit04_greed
             Actor robot = new Actor();
             robot.SetText("#");
             robot.SetFontSize(FONT_SIZE);
-            robot.SetColor(WHITE);
+            robot.SetColor(ROBOT_COLOR);
             robot.SetPosition(new Point(MAX_X / 2, MAX_Y - CELL_SIZE));
             cast.AddActor("robot", robot);
 

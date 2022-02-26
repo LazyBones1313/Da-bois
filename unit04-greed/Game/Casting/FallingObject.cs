@@ -9,12 +9,17 @@ namespace Unit04_greed.Game.Casting
 
 
         int _points;
-        public FallingObject(int points, string text, Point position, Point velocity)
+        public FallingObject(string text, int points)
         {
             _points = points;
             this.text = text;
-            this.position = position;
-            this.velocity = velocity;
+        }
+
+        public bool isFallen(int maxY)
+        {
+            int y = GetPosition().GetY();
+            int dy = GetVelocity().GetY();
+            return maxY <= y + dy ? true : false;
         }
     }
 }

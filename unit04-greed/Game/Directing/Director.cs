@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unit04_greed.Game.Casting;
 using Unit04_greed.Game.Services;
@@ -73,23 +74,45 @@ namespace Unit04_greed.Game.Directing
             int maxX = videoService.GetWidth();
             int maxY = videoService.GetHeight();
             robot.MoveNext(maxX, maxY);
-            foreach (Actor actor in fallingObjects)
+            foreach (FallingObject fallingObject in fallingObjects)
             {
-                actor.MoveNext(maxX, maxY);
+                if (fallingObject.isFallen(maxY))
+                {
+                    cast.RemoveActor("fallingObject", fallingObject);
+                }
+                else
+                {
+                    fallingObject.MoveNext(maxX, maxY);
+                }
+
             }
 
 
-
-            
+            //Add Falling Object to cast
             if (counter % frequency == 0)
             {
                 //Add Falling Object to cast
-                FallingObject fallingObject = new FallingObject(10, "HI = )", new Point(0, 0), new Point(0, 2));
+                Random r = new Random();
+                
+                int choice = r.Next(0, 2);
+                string text;
+                int pointValue;
+                if(choice == 0)
+                {
+                    text = "*";
+                    pointValue = 10;
+                }
+                else
+                {
+                    text = "O";
+                    pointValue = -10;
+                }
+                FallingObject fallingObject = new FallingObject(text, pointValue);
+                fallingObject.SetPosition(new Point(0, 0));
+                fallingObject.SetVelocity(new Point(0, 3));
+
                 cast.AddActor("fallingObject", fallingObject);
-
-                // Reset Coounter
                 counter = 0;
-
             }
             counter++;
             

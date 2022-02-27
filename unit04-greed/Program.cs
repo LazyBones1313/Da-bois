@@ -46,11 +46,28 @@ namespace Unit04_greed
 
             // create the robot
             Actor robot = new Actor();
-            robot.SetText("#");
+            robot.SetText("\\___/");
             robot.SetFontSize(FONT_SIZE);
             robot.SetColor(ROBOT_COLOR);
             robot.SetPosition(new Point(MAX_X / 2, MAX_Y - CELL_SIZE));
             cast.AddActor("robot", robot);
+
+           // create the score
+            ScoreBoard scoreboard = new ScoreBoard();
+            scoreboard.SetText("Score; " + scoreboard.GetScore());
+            scoreboard.SetFontSize(FONT_SIZE);
+            scoreboard.SetColor(ROBOT_COLOR);
+            scoreboard.SetPosition(new Point(1, 1));
+            cast.AddActor("scoreboard", scoreboard);
+
+            // create Game Over screen
+            Actor gameOver = new Actor();
+            gameOver.SetText("GAME OVER!");
+            gameOver.SetFontSize(30);
+            gameOver.SetColor(ROBOT_COLOR);
+            gameOver.SetPosition(new Point(-50, -50));
+            cast.AddActor("gameOver", gameOver);           
+
 
             // load the messages
             List<string> messages = File.ReadAllLines(DATA_PATH).ToList<string>();
@@ -67,10 +84,10 @@ namespace Unit04_greed
             //     Point position = new Point(x, y);
             //     position = position.Scale(CELL_SIZE);
 
-            //     int r = random.Next(0, 256);
-            //     int g = random.Next(0, 256);
-            //     int b = random.Next(0, 256);
-            //     Color color = new Color(r, g, b);
+                // int r = random.Next(0, 256);
+                // int g = random.Next(0, 256);
+                // int b = random.Next(0, 256);
+                // Color color = new Color(r, g, b);
 
             //     Artifact artifact = new Artifact();
             //     artifact.SetText(text);

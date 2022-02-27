@@ -14,6 +14,7 @@ namespace Unit04_greed.Game.Services
     public class KeyboardService
     {
         private int cellSize = 15;
+        public int test;
 
         /// <summary>
         /// Constructs a new instance of KeyboardService using the given cell size.
@@ -58,5 +59,17 @@ namespace Unit04_greed.Game.Services
 
             return direction;
         }
+
+        // public void GetUpKey()
+        // {
+        //     if (Raylib.IsKeyDown(KeyboardKey.KEY_UP))
+        //     {
+        //         test += 1;
+        //     }
+        //     else
+        //     {
+        //         test += 0;
+        //     }
+        // }
     }
 }

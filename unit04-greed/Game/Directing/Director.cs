@@ -57,7 +57,11 @@ namespace Unit04_greed.Game.Directing
         {
             Actor robot = cast.GetFirstActor("robot");
             Point velocity = keyboardService.GetDirection();
-            robot.SetVelocity(velocity);     
+            robot.SetVelocity(velocity);
+
+            // ScoreBoard scoreBoard = (ScoreBoard) cast.GetFirstActor("scoreboard");
+            // keyboardService.GetUpKey();
+            // scoreBoard.Add(keyboardService.test);
         }
 
         /// <summary>
@@ -68,11 +72,14 @@ namespace Unit04_greed.Game.Directing
         {
             Actor banner = cast.GetFirstActor("banner");
             Actor robot = cast.GetFirstActor("robot");
+            ScoreBoard scoreBoard = (ScoreBoard) cast.GetFirstActor("scoreboard");
             List<Actor> fallingObjects = cast.GetActors("fallingObject");
 
             banner.SetText("");
             int maxX = videoService.GetWidth();
             int maxY = videoService.GetHeight();
+            int midX = maxX / 2;
+            int midY = maxY / 2;
             robot.MoveNext(maxX, maxY);
             foreach (FallingObject fallingObject in fallingObjects)
             {
@@ -84,6 +91,31 @@ namespace Unit04_greed.Game.Directing
                 {
                     fallingObject.MoveNext(maxX, maxY);
                 }
+                // if object is coliding with player
+                int min_x = robot.GetPosition().GetX();
+                int min_y = robot.GetPosition().GetY();
+                int max_X = 40 + robot.GetPosition().GetX();
+                int max_Y = 5 + robot.GetPosition().GetY();
+                int min_obj_X = fallingObject.GetPosition().GetX();
+                int max_obj_X = fallingObject.GetPosition().GetX() + 1;
+                int min_obj_Y = fallingObject.GetPosition().GetY();
+                int max_obj_Y = fallingObject.GetPosition().GetY() + 1;
+
+
+                if (min_obj_X <= max_X && min_obj_X >= min_x && min_obj_Y <= max_Y && min_obj_Y >= min_y)
+                {
+                    Random random = new Random();
+                    int newPos = random.Next(0, maxX);
+                    if(fallingObject.GetText() == "*")
+                    {
+                        scoreBoard.Add(200);
+                    }
+                    if(fallingObject.GetText() == "O")
+                    {
+                        scoreBoard.Add(-200);
+                    }
+                    fallingObject.SetPosition(new Point(newPos, 0));
+                }
 
             }
 
@@ -92,9 +124,9 @@ namespace Unit04_greed.Game.Directing
             if (counter % frequency == 0)
             {
                 //Add Falling Object to cast
-                Random r = new Random();
+                Random random = new Random();
                 
-                int choice = r.Next(0, 2);
+                int choice = random.Next(0, 2);
                 string text;
                 int pointValue;
                 if(choice == 0)
@@ -108,13 +140,29 @@ namespace Unit04_greed.Game.Directing
                     pointValue = -10;
                 }
                 FallingObject fallingObject = new FallingObject(text, pointValue);
-                fallingObject.SetPosition(new Point(0, 0));
+                int pos = random.Next(0, maxX);
+                fallingObject.SetPosition(new Point(pos, 0));
                 fallingObject.SetVelocity(new Point(0, 3));
-
+                int r = random.Next(0, 256);
+                int g = random.Next(0, 256);
+                int b = random.Next(0, 256);
+                Color color = new Color(r, g, b);
+                fallingObject.SetColor(color);
                 cast.AddActor("fallingObject", fallingObject);
                 counter = 0;
             }
             counter++;
+
+            if (scoreBoard.GetScore() <= 0)
+            {
+                Actor gameOver = cast.GetFirstActor("gameOver");
+                gameOver.SetPosition(new Point(midX - 100, midY - 15));
+                foreach (FallingObject f in fallingObjects)
+                {
+                    f.SetVelocity(new Point(0, 0));
+                }
+
+            }
             
             // foreach (Actor actor in artifacts)
             // {

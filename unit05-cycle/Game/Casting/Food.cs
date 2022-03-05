@@ -41,7 +41,7 @@ namespace Unit05.Game.Casting
             points = random.Next(9);
             int x = random.Next(Constants.COLUMNS);
             int y = random.Next(Constants.ROWS);
-            Point position = new Point(x, y);
+            Point position = new Point(-50, -50);
             position = position.Scale(Constants.CELL_SIZE);
             SetPosition(position);
         }

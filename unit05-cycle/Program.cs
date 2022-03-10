@@ -23,23 +23,25 @@ namespace Unit05
             int s1x = 0;
             int s1y = Constants.MAX_Y - Constants.CELL_SIZE;
             s1.SetPosition(new Point(s1x, s1y));
+            s1.SetVelocity(new Point(Constants.CELL_SIZE, 0));
             s1.SetHeadColor(Constants.BLUE);
-            s1.SetSegmentsColor(Constants.CYAN);
+            s1.SetColor(Constants.CYAN);
             s1.PrepareBody();
 
             Snake s2 = new Snake();
             int s2x = Constants.MAX_X - Constants.CELL_SIZE;
             int s2y = 0;
             s2.SetPosition(new Point(s2x, s2y));
+            s2.SetVelocity(new Point(-Constants.CELL_SIZE, 0));
             s2.SetHeadColor(Constants.RED);
-            s2.SetSegmentsColor(Constants.ORANGE);
+            s2.SetColor(Constants.ORANGE);
             s2.PrepareBody();
 
             // create the cast
             Cast cast = new Cast();
             cast.AddActor("snake", s1);
             cast.AddActor("snake", s2);
-            cast.AddActor("score", new Score());
+            // cast.AddActor("score", new Score());
 
 
 

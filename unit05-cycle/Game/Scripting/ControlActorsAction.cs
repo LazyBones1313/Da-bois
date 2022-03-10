@@ -14,8 +14,8 @@ namespace Unit05.Game.Scripting
     public class ControlActorsAction : Action
     {
         private KeyboardService keyboardService;
-        private Point direction = new Point(Constants.CELL_SIZE, 0);
-        private Point direction2 = new Point(-Constants.CELL_SIZE, 0);
+        private Point s1_direction = new Point(Constants.CELL_SIZE, 0);
+        private Point s2_direction2 = new Point(-Constants.CELL_SIZE, 0);
 
         /// <summary>
         /// Constructs a new instance of ControlActorsAction using the given KeyboardService.
@@ -31,61 +31,37 @@ namespace Unit05.Game.Scripting
             //Get Snakes
             List<Actor> snakes = cast.GetActors("snake");
 
-            // Snake One
+            //Set Snake head direction for each snake
+            SetDirectionFromKey(snakes[0], "a", "d", "w", "s");
+            SetDirectionFromKey(snakes[1], "j", "l", "i", "k");
+        }
+
+        // Sets Snake direction from key
+        private void SetDirectionFromKey(Actor actor, string leftKey, string rightKey, string upKey, string downKey)
+        {
             // left
-            if (keyboardService.IsKeyDown("a"))
+            if (keyboardService.IsKeyDown(leftKey))
             {
-                direction = new Point(-Constants.CELL_SIZE, 0);
+                actor.SetVelocity(new Point(-Constants.CELL_SIZE, 0));
             }
 
             // right
-            if (keyboardService.IsKeyDown("d"))
+            if (keyboardService.IsKeyDown(rightKey))
             {
-                direction = new Point(Constants.CELL_SIZE, 0);
+                actor.SetVelocity(new Point(Constants.CELL_SIZE, 0));
             }
 
             // up
-            if (keyboardService.IsKeyDown("w"))
+            if (keyboardService.IsKeyDown(upKey))
             {
-                direction = new Point(0, -Constants.CELL_SIZE);
+                actor.SetVelocity(new Point(0, -Constants.CELL_SIZE));
             }
 
             // down
-            if (keyboardService.IsKeyDown("s"))
+            if (keyboardService.IsKeyDown(downKey))
             {
-                direction = new Point(0, Constants.CELL_SIZE);
+                actor.SetVelocity(new Point(0, Constants.CELL_SIZE));
             }
-
-            Snake s1 = (Snake) snakes[0];
-            s1.TurnHead(direction);
-
-            //Snake Two
-            // left
-            if (keyboardService.IsKeyDown("j"))
-            {
-                direction2 = new Point(-Constants.CELL_SIZE, 0);
-            }
-
-            // right
-            if (keyboardService.IsKeyDown("l"))
-            {
-                direction2 = new Point(Constants.CELL_SIZE, 0);
-            }
-
-            // up
-            if (keyboardService.IsKeyDown("i"))
-            {
-                direction2 = new Point(0, -Constants.CELL_SIZE);
-            }
-
-            // down
-            if (keyboardService.IsKeyDown("k"))
-            {
-                direction2 = new Point(0, Constants.CELL_SIZE);
-            }
-
-            Snake s2 = (Snake) snakes[1];
-            s2.TurnHead(direction2);
         }
     }
 }

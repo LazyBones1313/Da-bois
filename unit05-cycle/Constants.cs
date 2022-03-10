@@ -23,12 +23,14 @@ namespace Unit05.Game
         public static string CAPTION = "Snake";
         public static int SNAKE_LENGTH = 1;
 
-
+        //Colors
         public static Color WHITE = new Color(255, 255, 255);
         public static Color BLUE = new Color(0, 145, 255);
         public static Color CYAN = new Color(0, 255, 230);
         public static Color RED = new Color(255, 51, 0);
         public static Color ORANGE = new Color(255, 137, 0);
+        public static Color GRAY = new Color(113, 121, 126);
+        public static Color LIGHT_GRAY = new Color(235, 235, 235);
     }
 }
 

@@ -37,13 +37,11 @@ namespace Unit05.Game.Scripting
 
 
 
-            Actor score = cast.GetFirstActor("score");
-            // Actor food = cast.GetFirstActor("food");
+            // Actor score = cast.GetFirstActor("score");
             List<Actor> messages = cast.GetActors("messages");
             
             videoService.ClearBuffer();
-            videoService.DrawActor(score);
-            // videoService.DrawActor(food);
+            // videoService.DrawActor(score);
             videoService.DrawActors(messages);
             videoService.FlushBuffer();
         }

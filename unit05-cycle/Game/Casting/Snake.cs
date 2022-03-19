@@ -9,11 +9,9 @@ namespace Unit05.Game.Casting
     /// <para>The responsibility of Snake is to move itself.</para>
     /// </summary>
     public class Snake : Actor
-    {
+    {   
         private List<Actor> segments = new List<Actor>();
         private Color headColor = Constants.WHITE;
-        private Color segmentsColor = Constants.WHITE;
-
 
         /// <summary>
         /// Constructs a new instance of a Snake.
@@ -23,14 +21,29 @@ namespace Unit05.Game.Casting
             // PrepareBody();
         }
 
+        // Sets the color of the head of the snake
         public void SetHeadColor(Color headColor)
         {
             this.headColor = headColor;
+            if (segments.Count != 0)
+            {
+                segments[0].SetColor(headColor);
+            }
         }
 
-        public void SetSegmentsColor(Color segmentsColor)
+
+        // Sets the color for the snake's body
+        // This method overrides SetColor from Actor
+        public override void SetColor(Color color)
         {
-            this.segmentsColor = segmentsColor;
+            base.SetColor(color);
+            if (segments.Count > 1)
+            {
+                for (int i = 1; i < segments.Count; i++)
+                {
+                    segments[i].SetColor(GetColor());
+                }
+            }
         }
 
         /// <summary>
@@ -77,7 +90,7 @@ namespace Unit05.Game.Casting
                 segment.SetPosition(position);
                 segment.SetVelocity(velocity);
                 segment.SetText("#");
-                segment.SetColor(segmentsColor);
+                segment.SetColor(GetColor());
                 segments.Add(segment);
             }
         }
@@ -85,6 +98,7 @@ namespace Unit05.Game.Casting
         /// <inheritdoc/>
         public override void MoveNext()
         {
+            GetHead().SetVelocity(GetVelocity());
             foreach (Actor segment in segments)
             {
                 segment.MoveNext();
@@ -101,15 +115,6 @@ namespace Unit05.Game.Casting
         }
 
         /// <summary>
-        /// Turns the head of the snake in the given direction.
-        /// </summary>
-        /// <param name="velocity">The given direction.</param>
-        public void TurnHead(Point direction)
-        {
-            segments[0].SetVelocity(direction);
-        }
-
-        /// <summary>
         /// Prepares the snake body for moving.
         /// </summary>
         public void PrepareBody()
@@ -123,7 +128,7 @@ namespace Unit05.Game.Casting
                 Point position = new Point(x - i * Constants.CELL_SIZE, y);
                 Point velocity = new Point(1 * Constants.CELL_SIZE, 0);
                 string text = i == 0 ? "%" : "#";
-                Color color = i == 0 ? headColor : segmentsColor;
+                Color color = i == 0 ? headColor : GetColor();
 
                 Actor segment = new Actor();
                 segment.SetPosition(position);

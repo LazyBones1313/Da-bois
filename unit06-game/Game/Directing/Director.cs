@@ -31,13 +31,7 @@ namespace unit06_game.Game.Directing
         }
         public void StartGame()
         {
-            OnNext(Constants.NEW_GAME);
-            videoService.Initialize();
-            videoService.LoadImages("Assets/Images");
-            while (videoService.IsWindowOpen())
-            {
 
-            }
         }
 
     }

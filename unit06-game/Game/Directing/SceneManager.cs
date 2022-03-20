@@ -23,10 +23,10 @@ namespace unit06_game.Game.Directing
 
         public void PrepareScene(string scene, Cast cast, Script script)
         {
-            // if (scene == Constants.NEW_GAME)
-            // {
-            //     PrepareNewGame(cast, script);
-            // }
+            if (scene == Constants.NEW_GAME)
+            {
+                PrepareNewGame(cast, script);
+            }
             // else if (scene == Constants.NEXT_LEVEL)
             // {
             //     PrepareNextLevel(cast, script);
@@ -43,6 +43,13 @@ namespace unit06_game.Game.Directing
             // {
             //     PrepareGameOver(cast, script);
             // }
+        }
+
+        private void PrepareNewGame(Cast cast, Script script)
+        {
+            // Code that sets up screen for a new game
+            
+
         }
 
 

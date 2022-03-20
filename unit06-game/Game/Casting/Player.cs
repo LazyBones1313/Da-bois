@@ -1,3 +1,19 @@
-// Child of Actor
+namespace unit06_game.Game.Casting
+{
+    /// <summary>
+    /// This is the player for the game.
+    /// </summary>
+    public class Player : Actor
+    {
+        private Body body;
 
-// This class will handle the information for the child actor
+        private Image image;
+
+        public Player(Body body, Image image, bool debug = false) : base(debug)
+        {
+            this.body = body;
+            this.image = image;
+        }
+        
+    }
+}

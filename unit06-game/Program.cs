@@ -1,6 +1,4 @@
-﻿using System;
-using unit06_game.Game.Directing;
-
+﻿using unit06_game.Game.Directing;
 
 namespace unit06_game
 {
@@ -9,7 +7,7 @@ namespace unit06_game
         
         static void Main(string[] args)
         {
-            Director director = new Director();
+            Director director = new Director(SceneManager.VideoService);
             director.StartGame();
         }
     }

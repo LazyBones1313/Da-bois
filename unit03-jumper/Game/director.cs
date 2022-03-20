@@ -34,7 +34,7 @@ namespace unit03_jumper.Game
                     break;
                 }
                 Console.WriteLine("\n\nChoose a letter from the alphabet ");
-                userChoice = Console.ReadLine();
+                // userChoice = Console.ReadLine();
                 if (word.ContainsLetter(userChoice))
                 {
                     word.AddLetter(userChoice);

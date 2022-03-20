@@ -45,7 +45,7 @@ namespace unit06_game
         public static string PAUSE = "p";
 
         // SCENES
-            //This will include names of scenes
+        public static string NEW_GAME = "new_game";
 
 
         // ----------------------------------------------------------------------------------------- 
@@ -58,6 +58,9 @@ namespace unit06_game
         // ----------------------------------------------------------------------------------------- 
         // CASTING CONSTANTS
         // ----------------------------------------------------------------------------------------- 
+
+        // PLAYER CONSTANTS
+        public static string PLAYER_IMAGE = "Assets/Images/purple_square.png";
 
         // HEALTH AND TIMER
             //This will contain health and time settings

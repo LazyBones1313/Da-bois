@@ -8,13 +8,13 @@ using unit06_game.Game.Services;
 
 namespace unit06_game.Game.Directing
 {
-    class Director
+    class Director : ActionCallback
     {
         private Cast cast;
         private Script script;
         private SceneManager sceneManager;
         private VideoService videoService;
-        public Director()
+        public Director(VideoService videoService)
         {
             this.videoService = videoService;
             this.cast = new Cast();
@@ -22,9 +22,22 @@ namespace unit06_game.Game.Directing
             this.sceneManager = new SceneManager();
 
         }
+
+         /// </inheritdoc>
+
+        public void OnNext(string scene)
+        {
+            sceneManager.PrepareScene(scene, cast, script);
+        }
         public void StartGame()
         {
-            
+            OnNext(Constants.NEW_GAME);
+            videoService.Initialize();
+            videoService.LoadImages("Assets/Images");
+            while (videoService.IsWindowOpen())
+            {
+
+            }
         }
 
     }

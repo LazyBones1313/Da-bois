@@ -53,9 +53,10 @@ namespace Unit06.Game.Directing
             AddInitActions(script);
             AddLoadActions(script);
 
-            // ChangeSceneAction a = new ChangeSceneAction(KeyboardService, Constants.NEXT_LEVEL);
-            // script.AddAction(Constants.INPUT, a);
+            ControlPlayerAction c = new ControlPlayerAction(KeyboardService);
+            script.AddAction(Constants.INPUT, c);
 
+            AddUpdateActions(script);
             AddOutputActions(script);
             AddUnloadActions(script);
             AddReleaseActions(script);
@@ -132,8 +133,8 @@ namespace Unit06.Game.Directing
         {
             cast.ClearActors(Constants.PLAYER_GROUP);
 
-            int x = Constants.CENTER_X;
-            int y = Constants.CENTER_Y;
+            int x = Constants.CENTER_X - Constants.PLAYER_WIDTH / 2;
+            int y = Constants.GROUND_Y - Constants.PLAYER_HEIGHT;
         
             Point position = new Point(x, y);
             Point size = new Point(Constants.PLAYER_WIDTH, Constants.PLAYER_HEIGHT);
@@ -327,12 +328,9 @@ namespace Unit06.Game.Directing
 
         private void AddUpdateActions(Script script)
         {
-            // script.AddAction(Constants.UPDATE, new MoveBallAction());
             // script.AddAction(Constants.UPDATE, new MoveRacketAction());
+            script.AddAction(Constants.UPDATE, new MovePlayerAction());
             // script.AddAction(Constants.UPDATE, new CollideBordersAction(PhysicsService, AudioService));
-            // script.AddAction(Constants.UPDATE, new CollideBrickAction(PhysicsService, AudioService));
-            // script.AddAction(Constants.UPDATE, new CollideRacketAction(PhysicsService, AudioService));
-            // script.AddAction(Constants.UPDATE, new CheckOverAction());     
         }
     }
 }

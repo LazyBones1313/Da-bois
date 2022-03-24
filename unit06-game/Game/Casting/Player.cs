@@ -32,6 +32,29 @@ namespace Unit06.Game.Casting
         {
             return image;
         }
+
+        public void MoveLeft()
+        {
+            Point velocity = new Point(-Constants.PLAYER_MOVE_VELOCITY, 0);
+            body.SetVelocity(velocity);
+        }
+
+        public void MoveRight()
+        {
+            Point velocity = new Point(Constants.PLAYER_MOVE_VELOCITY, 0);
+            body.SetVelocity(velocity);
+        }
+
+        public void Jump()
+        {
+
+        }
+
+        public void StopMoving()
+        {
+            Point velocity = new Point(0, 0);
+            body.SetVelocity(velocity);
+        }
         
     }
 }

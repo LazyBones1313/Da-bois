@@ -19,6 +19,7 @@ namespace Unit06
         public static int SCREEN_HEIGHT = 680;
         public static int CENTER_X = SCREEN_WIDTH / 2;
         public static int CENTER_Y = SCREEN_HEIGHT / 2;
+        public static int GROUND_Y = SCREEN_HEIGHT - 80;
 
         // FONT
         // public static string FONT_FILE = "Assets/Fonts/zorque.otf";
@@ -43,6 +44,8 @@ namespace Unit06
         // KEYS
         public static string LEFT = "left";
         public static string RIGHT = "right";
+        public static string UP = "up";
+        public static string DOWN = "down";
         public static string SPACE = "space";
         public static string ENTER = "enter";
         public static string PAUSE = "p";
@@ -75,8 +78,9 @@ namespace Unit06
         // Player
         public static string PLAYER_GROUP = "player";
         public static string PLAYER_IMAGE = "Assets/Images/purple.png";
-        public static int PLAYER_WIDTH = 30;
-        public static int PLAYER_HEIGHT = 60;
+        public static int PLAYER_WIDTH = 50;
+        public static int PLAYER_HEIGHT = 100;
+        public static int PLAYER_MOVE_VELOCITY = 20;
 
 
         // DIALOG

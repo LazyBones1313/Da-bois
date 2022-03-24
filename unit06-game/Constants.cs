@@ -82,6 +82,11 @@ namespace Unit06
         public static int PLAYER_HEIGHT = 100;
         public static int PLAYER_MOVE_VELOCITY = 20;
 
+        // Room
+        public static string ROOM_GROUP = "room";
+        public static string ROOM_IMAGE = "Assets/Images/panorama.png";
+        public static int ROOM_HEIGHT = SCREEN_HEIGHT;
+        public static int ROOM_WIDTH = 3039;
 
         // DIALOG
         public static string DIALOG_GROUP = "dialogs";

@@ -5,23 +5,13 @@ namespace Unit06.Game.Casting
     /// </summary>
     public class Player : Actor
     {
-        private Body body;
 
         private Image image;
 
         public Player(Body body, Image image, bool debug = false) : base(debug)
         {
-            this.body = body;
+            base.SetBody(body);
             this.image = image;
-        }
-
-        /// <summary>
-        /// Gets the body.
-        /// </summary>
-        /// <returns>The body.</returns>
-        public Body GetBody()
-        {
-            return body;
         }
 
         /// <summary>
@@ -36,13 +26,13 @@ namespace Unit06.Game.Casting
         public void MoveLeft()
         {
             Point velocity = new Point(-Constants.PLAYER_MOVE_VELOCITY, 0);
-            body.SetVelocity(velocity);
+            base.GetBody().SetVelocity(velocity);
         }
 
         public void MoveRight()
         {
             Point velocity = new Point(Constants.PLAYER_MOVE_VELOCITY, 0);
-            body.SetVelocity(velocity);
+            base.GetBody().SetVelocity(velocity);
         }
 
         public void Jump()
@@ -53,7 +43,7 @@ namespace Unit06.Game.Casting
         public void StopMoving()
         {
             Point velocity = new Point(0, 0);
-            body.SetVelocity(velocity);
+            base.GetBody().SetVelocity(velocity);
         }
         
     }

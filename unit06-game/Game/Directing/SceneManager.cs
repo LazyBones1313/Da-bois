@@ -49,6 +49,7 @@ namespace Unit06.Game.Directing
         {
             AddRoom(cast);
             AddPlayer(cast);
+            AddScreen(cast);
 
             script.ClearAllActions();
             AddInitActions(script);
@@ -162,15 +163,18 @@ namespace Unit06.Game.Directing
 
             cast.AddActor(Constants.ROOM_GROUP, room);
         }
-
+  
         private void AddScreen(Cast cast)
         {
+            Actor actor = new Actor();
             
+            Point position = new Point(0, 0);
+            Point size = new Point(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+            Point velocity = new Point(0, 0);
+
+            actor.SetBody(new Body(position, size, velocity));
+            cast.AddActor(Constants.SCREEN_GROUP, actor); 
         }
-
-  
-
-
 
 
 
@@ -221,6 +225,7 @@ namespace Unit06.Game.Directing
         {
             // script.AddAction(Constants.UPDATE, new MoveRacketAction());
             script.AddAction(Constants.UPDATE, new MovePlayerAction());
+            script.AddAction(Constants.UPDATE, new MoveScreenAction());
             // script.AddAction(Constants.UPDATE, new CollideBordersAction(PhysicsService, AudioService));
         }
     }

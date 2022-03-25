@@ -16,6 +16,7 @@ namespace Unit06.Game.Scripting
         public void Execute(Cast cast, Script script, ActionCallback callback)
         {
             Room room = (Room) cast.GetFirstActor(Constants.ROOM_GROUP);
+            Actor screen = cast.GetFirstActor(Constants.SCREEN_GROUP);
             Body body = room.GetBody();
 
             if (room.IsDebug())
@@ -27,7 +28,7 @@ namespace Unit06.Game.Scripting
             }
 
             Image image = room.GetImage();
-            Point position = body.GetPosition();
+            Point position = body.GetPosition().Subtract(screen.GetBody().GetPosition());
             videoService.DrawImage(image, position);
         }
     }

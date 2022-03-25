@@ -6,11 +6,12 @@ namespace Unit06.Game.Casting
     public class Actor
     {
         private bool debug;
-        
+        private Body body;
+
         /// <summary>
         /// Constructs a new instance of Actor.
         /// </summary>
-        public Actor(bool debug)
+        public Actor(bool debug = false)
         {
             this.debug = debug;
         }
@@ -22,6 +23,24 @@ namespace Unit06.Game.Casting
         public bool IsDebug()
         {
             return debug;
+        }
+
+        /// <summary>
+        /// Gets the body.
+        /// </summary>
+        /// <returns>The body.</returns>
+        public Body GetBody()
+        {
+            return body;
+        }
+
+        /// <summary>
+        /// Gets the body.
+        /// </summary>
+        /// <returns>The body.</returns>
+        public void SetBody(Body body)
+        {
+            this.body = body;
         }
     }
 }

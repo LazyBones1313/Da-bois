@@ -36,6 +36,18 @@ namespace Unit06.Game.Casting
         }
 
         /// <summary>
+        /// Subtract the given point to this one by substracting the x and y values.
+        /// </summary>
+        /// <param name="other">The point to subtract (the subtrahend).</param>
+        /// <returns>The different as a new Point.</returns>
+        public Point Subtract(Point other)
+        {
+            int x = this.x - other.GetX();
+            int y = this.y - other.GetY();
+            return new Point(x, y);
+        }
+
+        /// <summary>
         /// Whether or not this Point is equal to the given one.
         /// </summary>
         /// <param name="other">The point to compare.</param>

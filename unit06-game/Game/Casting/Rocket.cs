@@ -1,4 +1,16 @@
-// THis will be a child actor
+namespace Unit06.Game.Casting
+{
+    /// <summary>
+    /// This is the player for the game.
+    /// </summary>
+    public class Rocket : Actor
+    {
 
-// THis will store the information for the rocket
+        public Rocket(Body body, Image image, bool debug = false) : base(debug)
+        {
+            base.SetBody(body);
+            base.SetImage(image);
+        }
+    }
+}
 

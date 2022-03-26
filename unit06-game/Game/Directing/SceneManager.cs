@@ -48,6 +48,7 @@ namespace Unit06.Game.Directing
         private void PrepareNewGame(Cast cast, Script script)
         {
             AddRoom(cast);
+            AddRocket(cast);
             AddPlayer(cast);
             AddScreen(cast);
 
@@ -149,6 +150,23 @@ namespace Unit06.Game.Directing
             cast.AddActor(Constants.PLAYER_GROUP, player);
         }
 
+        private void AddRocket(Cast cast)
+        {
+            cast.ClearActors(Constants.ROCKET_GROUP);
+
+            int x = Constants.ROOM_CENTER_X - Constants.ROCKET_WIDTH / 2;
+            int y = Constants.GROUND_Y - (Constants.ROCKET_HEIGHT + Constants.ROCKET_DIST_FROM_GROUND);
+
+            Point position = new Point(x, y);
+            Point size = new Point(Constants.ROCKET_WIDTH, Constants.ROCKET_HEIGHT);
+            Point velocity = new Point(0, 0);
+
+            Body body = new Body(position, size, velocity);
+            Image image = new Image(Constants.ROCKET_IMAGE);
+            Rocket rocket = new Rocket(body, image);       
+
+            cast.AddActor(Constants.ROCKET_GROUP, rocket);
+        }
         private void AddRoom(Cast cast)
         {
             cast.ClearActors(Constants.ROOM_GROUP);
@@ -201,6 +219,7 @@ namespace Unit06.Game.Directing
         {
             script.AddAction(Constants.OUTPUT, new StartDrawingAction(VideoService));
             script.AddAction(Constants.OUTPUT, new DrawRoomAction(VideoService));
+            script.AddAction(Constants.OUTPUT, new DrawRocketAction(VideoService));
             script.AddAction(Constants.OUTPUT, new DrawPlayerAction(VideoService));
             // script.AddAction(Constants.OUTPUT, new DrawHudAction(VideoService));
             // script.AddAction(Constants.OUTPUT, new DrawBallAction(VideoService));

@@ -7,6 +7,7 @@ namespace Unit06.Game.Casting
     {
         private bool debug;
         private Body body;
+        private Image image;
 
         /// <summary>
         /// Constructs a new instance of Actor.
@@ -42,5 +43,23 @@ namespace Unit06.Game.Casting
         {
             this.body = body;
         }
+
+        /// <summary>
+        /// Gets the image.
+        /// </summary>
+        /// <returns>The image.</returns>
+        public Image GetImage()
+        {
+            return image;
+        }
+
+        /// <summary>
+        /// Sets the image.
+        /// </summary>
+        public void SetImage(Image image)
+        {
+            this.image = image;
+        }
+
     }
 }

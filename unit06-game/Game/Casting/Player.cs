@@ -6,21 +6,10 @@ namespace Unit06.Game.Casting
     public class Player : Actor
     {
 
-        private Image image;
-
         public Player(Body body, Image image, bool debug = false) : base(debug)
         {
             base.SetBody(body);
-            this.image = image;
-        }
-
-        /// <summary>
-        /// Gets the image.
-        /// </summary>
-        /// <returns>The image.</returns>
-        public Image GetImage()
-        {
-            return image;
+            base.SetImage(image);
         }
 
         public void MoveLeft()

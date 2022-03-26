@@ -86,11 +86,20 @@ namespace Unit06
         public static int PLAYER_MAX_RANGE_X = CENTER_X + PLAYER_DIST_FROM_CENTER_X;
 
 
+        // Rocket
+        public static string ROCKET_GROUP = "rocket";
+        public static string ROCKET_IMAGE = "Assets/Images/orange.png";
+        public static int ROCKET_WIDTH = 240;
+        public static int ROCKET_HEIGHT = 399;
+        public static int ROCKET_DIST_FROM_GROUND = 40;
+
+
         // Room
         public static string ROOM_GROUP = "room";
-        public static string ROOM_IMAGE = "Assets/Images/panorama.png";
+        public static string ROOM_IMAGE = "Assets/Images/background.png";
         public static int ROOM_HEIGHT = SCREEN_HEIGHT;
-        public static int ROOM_WIDTH = 3039;
+        public static int ROOM_WIDTH = 3317;
+        public static int ROOM_CENTER_X = ROOM_WIDTH / 2;
 
         // SCREEN
         public static string SCREEN_GROUP = "screen";

@@ -28,6 +28,12 @@ namespace Unit06.Game.Scripting
             {
                 player.StopMoving();
             }
+
+            if (keyboardService.IsKeyDown(Constants.UP) || keyboardService.IsKeyDown(Constants.SPACE))
+            {
+                player.Jump();
+            }
+
         }
     }
 }

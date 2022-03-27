@@ -50,6 +50,12 @@ namespace Unit06.Game.Directing
             AddRoom(cast);
             AddRocket(cast);
             AddPlayer(cast);
+            AddDebree(cast);
+            AddFood(cast);
+            AddWater(cast);
+            AddScrap(cast);
+
+
             AddScreen(cast);
 
             script.ClearAllActions();
@@ -194,9 +200,79 @@ namespace Unit06.Game.Directing
             cast.AddActor(Constants.SCREEN_GROUP, actor); 
         }
 
+        private void AddDebree(Cast cast)
+        {
+            cast.ClearActors(Constants.DEBREE_GROUP);
+
+            int x = Constants.ROOM_WIDTH - (Constants.DEBREE_WIDTH + 100);
+            int y = Constants.GROUND_Y - Constants.DEBREE_HEIGHT;
+
+            Point position = new Point(x, y);
+            Point size = new Point(Constants.DEBREE_WIDTH, Constants.DEBREE_HEIGHT);
+            Point velocity = new Point(0, 0);
+
+            Body body = new Body(position, size, velocity);
+            Image image = new Image(Constants.DEBREE_IMAGE);
+            Item item = new Item(body, image, Constants.DEBREE_VALUE);       
+
+            cast.AddActor(Constants.DEBREE_GROUP, item);
+        }
 
 
+        private void AddScrap(Cast cast)
+        {
+            cast.ClearActors(Constants.SCRAP_GROUP);
 
+            int x = Constants.ROOM_WIDTH - (Constants.SCRAP_WIDTH + 200);
+            int y = Constants.GROUND_Y - Constants.SCRAP_HEIGHT;
+
+            Point position = new Point(x, y);
+            Point size = new Point(Constants.SCRAP_WIDTH, Constants.SCRAP_HEIGHT);
+            Point velocity = new Point(0, 0);
+
+            Body body = new Body(position, size, velocity);
+            Image image = new Image(Constants.SCRAP_IMAGE);
+            Item item = new Item(body, image, Constants.SCRAP_VALUE);       
+
+            cast.AddActor(Constants.SCRAP_GROUP, item);
+        }
+
+        private void AddFood(Cast cast)
+        {
+            cast.ClearActors(Constants.FOOD_GROUP);
+
+            int x = Constants.ROOM_WIDTH - (Constants.FOOD_WIDTH + 300);
+            int y = Constants.GROUND_Y - Constants.FOOD_HEIGHT;
+
+            Point position = new Point(x, y);
+            Point size = new Point(Constants.FOOD_WIDTH, Constants.FOOD_HEIGHT);
+            Point velocity = new Point(0, 0);
+
+            Body body = new Body(position, size, velocity);
+            Image image = new Image(Constants.FOOD_IMAGE);
+            Item item = new Item(body, image, Constants.FOOD_VALUE);       
+
+            cast.AddActor(Constants.FOOD_GROUP, item);
+        }
+
+
+        private void AddWater(Cast cast)
+        {
+            cast.ClearActors(Constants.WATER_GROUP);
+
+            int x = Constants.ROOM_WIDTH - (Constants.WATER_WIDTH + 400);
+            int y = Constants.GROUND_Y - Constants.WATER_HEIGHT;
+
+            Point position = new Point(x, y);
+            Point size = new Point(Constants.WATER_WIDTH, Constants.WATER_HEIGHT);
+            Point velocity = new Point(0, 0);
+
+            Body body = new Body(position, size, velocity);
+            Image image = new Image(Constants.WATER_IMAGE);
+            Item item = new Item(body, image, Constants.WATER_VALUE);       
+
+            cast.AddActor(Constants.WATER_GROUP, item);
+        }
 
 
 
@@ -221,11 +297,7 @@ namespace Unit06.Game.Directing
             script.AddAction(Constants.OUTPUT, new DrawRoomAction(VideoService));
             script.AddAction(Constants.OUTPUT, new DrawRocketAction(VideoService));
             script.AddAction(Constants.OUTPUT, new DrawPlayerAction(VideoService));
-            // script.AddAction(Constants.OUTPUT, new DrawHudAction(VideoService));
-            // script.AddAction(Constants.OUTPUT, new DrawBallAction(VideoService));
-            // script.AddAction(Constants.OUTPUT, new DrawBricksAction(VideoService));
-            // script.AddAction(Constants.OUTPUT, new DrawRacketAction(VideoService));
-            // script.AddAction(Constants.OUTPUT, new DrawDialogAction(VideoService));
+            script.AddAction(Constants.OUTPUT, new DrawItemsAction(VideoService));
             script.AddAction(Constants.OUTPUT, new EndDrawingAction(VideoService));
         }
 
@@ -242,9 +314,9 @@ namespace Unit06.Game.Directing
 
         private void AddUpdateActions(Script script)
         {
-            // script.AddAction(Constants.UPDATE, new MoveRacketAction());
             script.AddAction(Constants.UPDATE, new MovePlayerAction());
             script.AddAction(Constants.UPDATE, new MoveScreenAction());
+            script.AddAction(Constants.UPDATE, new ApplyGravityAction());
             // script.AddAction(Constants.UPDATE, new CollideBordersAction(PhysicsService, AudioService));
         }
     }

@@ -5,6 +5,7 @@ namespace Unit06.Game.Casting
     /// </summary>
     public class Player : Actor
     {
+        private bool airBorne = false;
 
         public Player(Body body, Image image, bool debug = false) : base(debug)
         {
@@ -14,26 +15,43 @@ namespace Unit06.Game.Casting
 
         public void MoveLeft()
         {
-            Point velocity = new Point(-Constants.PLAYER_MOVE_VELOCITY, 0);
-            base.GetBody().SetVelocity(velocity);
+            base.GetBody().GetVelocity().SetX(-Constants.PLAYER_MOVE_VELOCITY);
         }
 
         public void MoveRight()
         {
-            Point velocity = new Point(Constants.PLAYER_MOVE_VELOCITY, 0);
-            base.GetBody().SetVelocity(velocity);
+            base.GetBody().GetVelocity().SetX(Constants.PLAYER_MOVE_VELOCITY);
         }
-
-        public void Jump()
-        {
-
-        }
-
         public void StopMoving()
         {
-            Point velocity = new Point(0, 0);
-            base.GetBody().SetVelocity(velocity);
+            base.GetBody().GetVelocity().SetX(0);
         }
         
+        public void Jump()
+        {
+            if (!IsAirBorne())
+            {
+                SetAirBorne(true);
+                base.GetBody().GetVelocity().SetY(-Constants.PLAYER_JUMP_VELOCITY);
+            }
+        }
+
+        public void Land(int y)
+        {
+                    SetAirBorne(false);
+                    GetBody().GetVelocity().SetY(0);
+                    GetBody().GetPosition().SetY(y);
+        }
+
+        private void SetAirBorne(bool airBorne)
+        {
+            this.airBorne = airBorne;
+        }
+
+        public bool IsAirBorne()
+        {
+            return airBorne;
+        }
+
     }
 }

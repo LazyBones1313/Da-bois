@@ -74,6 +74,8 @@ namespace Unit06
         // CASTING CONSTANTS
         // ----------------------------------------------------------------------------------------- 
 
+        //Gravity
+        public static int GRAVITY_ACCELERATION = 2;
 
         // Player
         public static string PLAYER_GROUP = "player";
@@ -81,6 +83,7 @@ namespace Unit06
         public static int PLAYER_WIDTH = 50;
         public static int PLAYER_HEIGHT = 100;
         public static int PLAYER_MOVE_VELOCITY = 20;
+        public static int PLAYER_JUMP_VELOCITY = 30;
         public static int PLAYER_DIST_FROM_CENTER_X = 150;
         public static int PLAYER_MIN_RANGE_X = CENTER_X - PLAYER_DIST_FROM_CENTER_X;
         public static int PLAYER_MAX_RANGE_X = CENTER_X + PLAYER_DIST_FROM_CENTER_X;
@@ -92,6 +95,34 @@ namespace Unit06
         public static int ROCKET_WIDTH = 240;
         public static int ROCKET_HEIGHT = 399;
         public static int ROCKET_DIST_FROM_GROUND = 40;
+
+        // Debree
+        public static string DEBREE_GROUP = "debree";
+        public static string DEBREE_IMAGE = "Assets/Images/yellow.png";
+        public static int DEBREE_VALUE = -10;
+        public static int DEBREE_WIDTH = 50;
+        public static int DEBREE_HEIGHT = 50;
+
+        // Food
+        public static string FOOD_GROUP = "food";
+        public static string FOOD_IMAGE = "Assets/Images/red.png";
+        public static int FOOD_VALUE = 10;
+        public static int FOOD_WIDTH = 50;
+        public static int FOOD_HEIGHT = 50;
+
+        // Water
+        public static string WATER_GROUP = "water";
+        public static string WATER_IMAGE = "Assets/Images/blue.png";
+        public static int WATER_VALUE = 5;
+        public static int WATER_WIDTH = 50;
+        public static int WATER_HEIGHT = 50;
+
+        // Scrap
+        public static string SCRAP_GROUP = "scrap";
+        public static string SCRAP_IMAGE = "Assets/Images/gray.png";
+        public static int SCRAP_VALUE = 1;
+        public static int SCRAP_WIDTH = 50;
+        public static int SCRAP_HEIGHT = 50;
 
 
         // Room

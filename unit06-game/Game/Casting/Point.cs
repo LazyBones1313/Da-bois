@@ -70,6 +70,24 @@ namespace Unit06.Game.Casting
         /// Gets the value of the y coordinate.
         /// </summary>
         /// <returns>The y coordinate.</returns>
+        public void SetY(int y)
+        {
+            this.y = y;
+        }
+
+                /// <summary>
+        /// Gets the value of the x coordinate.
+        /// </summary>
+        /// <returns>The x coordinate.</returns>
+        public void SetX(int x)
+        {
+            this.x = x;
+        }
+
+        /// <summary>
+        /// Gets the value of the y coordinate.
+        /// </summary>
+        /// <returns>The y coordinate.</returns>
         public int GetY()
         {
             return y;

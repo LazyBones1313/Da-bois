@@ -17,6 +17,10 @@ namespace Unit06.Game.Scripting
         {
             Stats stats = (Stats)cast.GetFirstActor(Constants.STATS_GROUP);
 
+            Health health = (Health)cast.GetFirstActor(Constants.LIVES_DISPLAY_GROUP);
+            videoService.DrawImage(health.GetHealthDisplay(stats.GetLives()), health.GetPosition());
+
+            DrawLabel(cast, Constants.SCRAP_DISPLAY_GROUP, Constants.SCRAP_DISPLAY_FORMAT, stats.GetScrapCount());
         }
 
         private void DrawLabel(Cast cast, string group, string format, int data)

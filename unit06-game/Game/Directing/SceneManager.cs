@@ -55,8 +55,8 @@ namespace Unit06.Game.Directing
             AddFood(cast);
             AddWater(cast);
             AddScrap(cast);
-
-
+            AddHealthDisplay(cast);
+            AddScrapCountDisplay(cast);
             AddScreen(cast);
 
             script.ClearAllActions();
@@ -204,6 +204,27 @@ namespace Unit06.Game.Directing
             cast.AddActor(Constants.STATS_GROUP, stats);
         }
 
+        private void AddHealthDisplay(Cast cast)
+        {
+            Point position = new Point(Constants.HUD_MARGIN, Constants.HUD_MARGIN);
+            Health health = new Health(position, Constants.LIVES_IMAGES);
+
+            cast.AddActor(Constants.LIVES_DISPLAY_GROUP, health);
+        }
+
+        private void AddScrapCountDisplay(Cast cast)
+        {
+            cast.ClearActors(Constants.SCRAP_DISPLAY_GROUP);
+
+            Text text = new Text(Constants.SCRAP_DISPLAY_FORMAT, Constants.FONT_FILE, Constants.FONT_SIZE, 
+                Constants.ALIGN_RIGHT, Constants.BLACK);
+            Point position = new Point(Constants.SCREEN_WIDTH - Constants.HUD_MARGIN, 
+                Constants.HUD_MARGIN);
+
+            Label label = new Label(text, position);
+            cast.AddActor(Constants.SCRAP_DISPLAY_GROUP, label);   
+        }
+
         private void AddDebree(Cast cast)
         {
             cast.ClearActors(Constants.DEBREE_GROUP);
@@ -301,6 +322,7 @@ namespace Unit06.Game.Directing
             script.AddAction(Constants.OUTPUT, new DrawRoomActorAction(VideoService, Constants.ROOM_GROUP));
             script.AddAction(Constants.OUTPUT, new DrawRoomActorAction(VideoService, Constants.ROCKET_GROUP));
             script.AddAction(Constants.OUTPUT, new DrawRoomActorAction(VideoService, Constants.PLAYER_GROUP));
+            script.AddAction(Constants.OUTPUT, new DrawHudAction(VideoService));
             script.AddAction(Constants.OUTPUT, new DrawItemsAction(VideoService));
             script.AddAction(Constants.OUTPUT, new EndDrawingAction(VideoService));
         }

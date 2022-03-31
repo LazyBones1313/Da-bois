@@ -22,8 +22,8 @@ namespace Unit06
         public static int GROUND_Y = SCREEN_HEIGHT - 80;
 
         // FONT
-        public static string FONT_FILE = "Assets/Fonts/zorque.otf";
-        public static int FONT_SIZE = 32;
+        public static string FONT_FILE = "Assets/Fonts/PressStart2P-Regular.ttf";
+        public static int FONT_SIZE = 20;
 
         // SOUND
         // public static string BOUNCE_SOUND = "Assets/Sounds/boing.wav";
@@ -84,6 +84,22 @@ namespace Unit06
         public static int STATS_NUM_LIVES = 6;
         public static int STATS_NUM_SCRAP = 0;
 
+        // HUD
+        public static int HUD_MARGIN = 20;
+        public static string LIVES_DISPLAY_GROUP = "lives_display";
+        public static string SCRAP_DISPLAY_GROUP = "scrap_display";
+        public static string SCRAP_DISPLAY_FORMAT = "SCRAP COUNT - {0}";
+        public static string TIME_DISPLAY_GROUP = "time_display";
+        public static Dictionary<int, string> LIVES_IMAGES = new Dictionary<int, string> () {
+            {0, "Assets/Images/Health/0.png"},
+            {1, "Assets/Images/Health/1.png"},
+            {2, "Assets/Images/Health/2.png"},
+            {3, "Assets/Images/Health/3.png"},
+            {4, "Assets/Images/Health/4.png"},
+            {5, "Assets/Images/Health/5.png"},
+            {6, "Assets/Images/Health/6.png"}
+        };
+        
         // Player
         public static string PLAYER_GROUP = "player";
         public static string PLAYER_IMAGE = "Assets/Images/purple.png";
@@ -98,9 +114,9 @@ namespace Unit06
 
         // Rocket
         public static string ROCKET_GROUP = "rocket";
-        public static string ROCKET_IMAGE = "Assets/Images/orange.png";
+        public static string ROCKET_IMAGE = "Assets/Images/rocket.png";
         public static int ROCKET_WIDTH = 240;
-        public static int ROCKET_HEIGHT = 399;
+        public static int ROCKET_HEIGHT = 410;
         public static int ROCKET_DIST_FROM_GROUND = 40;
 
         // Debree

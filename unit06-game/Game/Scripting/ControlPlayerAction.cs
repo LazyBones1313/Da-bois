@@ -31,7 +31,7 @@ namespace Unit06.Game.Scripting
 
             if (keyboardService.IsKeyDown(Constants.UP) || keyboardService.IsKeyDown(Constants.SPACE))
             {
-                player.Jump();
+                player.Jump(Constants.PLAYER_JUMP_VELOCITY);
             }
 
         }

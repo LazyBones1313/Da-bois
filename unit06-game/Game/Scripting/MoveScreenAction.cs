@@ -11,7 +11,7 @@ namespace Unit06.Game.Scripting
         // This method moves the screen to follow the player
         public void Execute(Cast cast, Script script, ActionCallback callback)
         {
-            Actor screen = cast.GetFirstActor(Constants.SCREEN_GROUP);
+            Screen screen = (Screen) cast.GetFirstActor(Constants.SCREEN_GROUP);
             Player player = (Player) cast.GetFirstActor(Constants.PLAYER_GROUP);
 
             int screenMinX = screen.GetBody().GetPosition().GetX();

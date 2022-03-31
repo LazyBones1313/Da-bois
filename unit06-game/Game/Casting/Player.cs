@@ -3,10 +3,8 @@ namespace Unit06.Game.Casting
     /// <summary>
     /// This is the player for the game.
     /// </summary>
-    public class Player : Actor
+    public class Player : RoomActor
     {
-        private bool airBorne = false;
-
         public Player(Body body, Image image, bool debug = false) : base(debug)
         {
             base.SetBody(body);
@@ -27,31 +25,13 @@ namespace Unit06.Game.Casting
             base.GetBody().GetVelocity().SetX(0);
         }
         
-        public void Jump()
+        public void Jump(int dy)
         {
             if (!IsAirBorne())
             {
                 SetAirBorne(true);
-                base.GetBody().GetVelocity().SetY(-Constants.PLAYER_JUMP_VELOCITY);
+                base.GetBody().GetVelocity().SetY(-dy);
             }
         }
-
-        public void Land(int y)
-        {
-                    SetAirBorne(false);
-                    GetBody().GetVelocity().SetY(0);
-                    GetBody().GetPosition().SetY(y);
-        }
-
-        private void SetAirBorne(bool airBorne)
-        {
-            this.airBorne = airBorne;
-        }
-
-        public bool IsAirBorne()
-        {
-            return airBorne;
-        }
-
     }
 }

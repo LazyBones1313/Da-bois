@@ -22,8 +22,8 @@ namespace Unit06
         public static int GROUND_Y = SCREEN_HEIGHT - 80;
 
         // FONT
-        // public static string FONT_FILE = "Assets/Fonts/zorque.otf";
-        // public static int FONT_SIZE = 32;
+        public static string FONT_FILE = "Assets/Fonts/zorque.otf";
+        public static int FONT_SIZE = 32;
 
         // SOUND
         // public static string BOUNCE_SOUND = "Assets/Sounds/boing.wav";
@@ -57,6 +57,8 @@ namespace Unit06
         public static string IN_PLAY = "in_play";
         public static string GAME_OVER = "game_over";
 
+
+
         // ----------------------------------------------------------------------------------------- 
         // SCRIPTING CONSTANTS
         // ----------------------------------------------------------------------------------------- 
@@ -76,6 +78,11 @@ namespace Unit06
 
         //Gravity
         public static int GRAVITY_ACCELERATION = 2;
+
+        // Stats
+        public static string STATS_GROUP = "stats";
+        public static int STATS_NUM_LIVES = 6;
+        public static int STATS_NUM_SCRAP = 0;
 
         // Player
         public static string PLAYER_GROUP = "player";

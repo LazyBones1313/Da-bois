@@ -12,20 +12,7 @@ namespace Unit06.Game.Scripting
         {
             Player player = (Player) cast.GetFirstActor(Constants.PLAYER_GROUP);
             Body body = player.GetBody();
-            if (player.IsAirBorne())
-            {  
-                Point v = body.GetVelocity().Add(new Point(0, Constants.GRAVITY_ACCELERATION));
-                if (body.GetPosition().GetY() + Constants.PLAYER_HEIGHT >= Constants.GROUND_Y)
-                {
-                    player.Land(Constants.GROUND_Y - Constants.PLAYER_HEIGHT);
-                }
-                else
-                {
-                    player.GetBody().SetVelocity(v);
-                }
-
-
-            }
+            player.FallOn(Constants.GROUND_Y, Constants.GRAVITY_ACCELERATION);
             
       
         }

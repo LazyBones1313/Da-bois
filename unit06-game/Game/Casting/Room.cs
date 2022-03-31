@@ -3,7 +3,7 @@ namespace Unit06.Game.Casting
     /// <summary>
     /// This is the room/background for the game.
     /// </summary>
-    public class Room : Actor
+    public class Room : RoomActor
     {
         public Room(Body body, Image image, bool debug = false) : base(debug)
         {

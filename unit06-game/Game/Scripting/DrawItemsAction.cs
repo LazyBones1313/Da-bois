@@ -15,7 +15,7 @@ namespace Unit06.Game.Scripting
 
         public void Execute(Cast cast, Script script, ActionCallback callback)
         {
-            Actor screen = cast.GetFirstActor(Constants.SCREEN_GROUP);
+            Screen screen = (Screen) cast.GetFirstActor(Constants.SCREEN_GROUP);
             Point screenPosition = screen.GetBody().GetPosition();
 
             DrawItems(cast.GetActors(Constants.WATER_GROUP), screenPosition);
@@ -30,14 +30,6 @@ namespace Unit06.Game.Scripting
             foreach (Item item in items)
             {
                 Body body = item.GetBody();
-
-                if (item.IsDebug())
-                {
-                    Rectangle rectangle = body.GetRectangle();
-                    Point size = rectangle.GetSize();
-                    Point pos = rectangle.GetPosition();
-                    videoService.DrawRectangle(size, pos, Constants.PURPLE, false);
-                }
 
                 Image image = item.GetImage();
                 Point position = body.GetPosition().Subtract(screenPosition);

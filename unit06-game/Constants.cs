@@ -105,8 +105,8 @@ namespace Unit06
         public static string PLAYER_IMAGE = "Assets/Images/purple.png";
         public static int PLAYER_WIDTH = 50;
         public static int PLAYER_HEIGHT = 100;
-        public static int PLAYER_MOVE_VELOCITY = 20;
-        public static int PLAYER_JUMP_VELOCITY = 30;
+        public static int PLAYER_MOVE_VELOCITY = 15;
+        public static int PLAYER_JUMP_VELOCITY = 25;
         public static int PLAYER_DIST_FROM_CENTER_X = 150;
         public static int PLAYER_MIN_RANGE_X = CENTER_X - PLAYER_DIST_FROM_CENTER_X;
         public static int PLAYER_MAX_RANGE_X = CENTER_X + PLAYER_DIST_FROM_CENTER_X;

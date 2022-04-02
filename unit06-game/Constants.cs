@@ -81,7 +81,8 @@ namespace Unit06
 
         // Stats
         public static string STATS_GROUP = "stats";
-        public static int STATS_NUM_LIVES = 6;
+        public static int STATS_STARTING_LIVES = 6;
+        public static int STATS_MAX_LIVES = STATS_STARTING_LIVES;
         public static int STATS_NUM_SCRAP = 0;
 
         // HUD
@@ -122,21 +123,21 @@ namespace Unit06
         // Debree
         public static string DEBREE_GROUP = "debree";
         public static string DEBREE_IMAGE = "Assets/Images/yellow.png";
-        public static int DEBREE_VALUE = -10;
+        public static int DEBREE_VALUE = -2;
         public static int DEBREE_WIDTH = 50;
         public static int DEBREE_HEIGHT = 50;
 
         // Food
         public static string FOOD_GROUP = "food";
         public static string FOOD_IMAGE = "Assets/Images/red.png";
-        public static int FOOD_VALUE = 10;
+        public static int FOOD_VALUE = 2;
         public static int FOOD_WIDTH = 50;
         public static int FOOD_HEIGHT = 50;
 
         // Water
         public static string WATER_GROUP = "water";
         public static string WATER_IMAGE = "Assets/Images/blue.png";
-        public static int WATER_VALUE = 5;
+        public static int WATER_VALUE = 1;
         public static int WATER_WIDTH = 50;
         public static int WATER_HEIGHT = 50;
 

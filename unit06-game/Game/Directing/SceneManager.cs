@@ -200,7 +200,7 @@ namespace Unit06.Game.Directing
 
         private void AddStats(Cast cast)
         {
-            Stats stats = new Stats(Constants.STATS_NUM_LIVES, Constants.STATS_NUM_SCRAP);
+            Stats stats = new Stats(Constants.STATS_STARTING_LIVES, Constants.STATS_MAX_LIVES, Constants.STATS_NUM_SCRAP);
             cast.AddActor(Constants.STATS_GROUP, stats);
         }
 
@@ -343,6 +343,7 @@ namespace Unit06.Game.Directing
             script.AddAction(Constants.UPDATE, new MovePlayerAction());
             script.AddAction(Constants.UPDATE, new MoveScreenAction());
             script.AddAction(Constants.UPDATE, new ApplyGravityAction());
+            script.AddAction(Constants.UPDATE, new CollideItemsAction(PhysicsService));
             // script.AddAction(Constants.UPDATE, new CollideBordersAction(PhysicsService, AudioService));
         }
     }

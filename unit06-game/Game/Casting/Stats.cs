@@ -5,33 +5,46 @@ namespace Unit06.Game.Casting
     /// </summary>
     public class Stats : Actor
     {
+        private int maxLives;
         private int lives;
         private int scrap;
 
         /// <summary>
         /// Constructs a new instance stats.
         /// </summary>
-        public Stats(int lives = 6, int scrap = 0, bool debug = false) : base(debug)
+        public Stats(int startingLives, int maxLives, int scrap, bool debug = false) : base(debug)
         {
-            this.lives = lives;
+            this.lives = startingLives;
+            this.maxLives = maxLives;
             this.scrap = scrap;
         }
 
 
         /// <summary>
-        /// Adds an extra life.
+        /// Adds lives to the player
         /// </summary>
         public void AddLives(int lives)
-        {
-            this.lives += lives;
+        {   
+            if (this.lives + lives >= maxLives)
+            {
+                this.lives = maxLives;
+            }
+            else if (this.lives + lives <= 0)
+            {
+                this.lives = 0;
+            }
+            else
+            {
+                this.lives += lives;
+            }
         }
 
         /// <summary>
         /// Adds a scrap piece.
         /// </summary>
-        public void AddScrap()
+        public void AddScrap(int scrap = 1)
         {
-            scrap++;
+            this.scrap += scrap;
         }
 
         /// <summary>
@@ -41,6 +54,15 @@ namespace Unit06.Game.Casting
         public int GetLives()
         {
             return lives;
+        }
+
+        /// <summary>
+        /// Gets the max lives.
+        /// </summary>
+        /// <returns>The max lives.</returns>
+        public int GetMaxLives()
+        {
+            return maxLives;
         }
 
         /// <summary>

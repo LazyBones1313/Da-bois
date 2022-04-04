@@ -20,6 +20,7 @@ namespace Unit06
         public static int CENTER_X = SCREEN_WIDTH / 2;
         public static int CENTER_Y = SCREEN_HEIGHT / 2;
         public static int GROUND_Y = SCREEN_HEIGHT - 80;
+        public static int ITEM_SPAWN_Y = SCRAP_HEIGHT / 3;
 
         // FONT
         public static string FONT_FILE = "Assets/Fonts/PressStart2P-Regular.ttf";
@@ -84,6 +85,7 @@ namespace Unit06
         public static int STATS_STARTING_LIVES = 6;
         public static int STATS_MAX_LIVES = STATS_STARTING_LIVES;
         public static int STATS_NUM_SCRAP = 0;
+        public static int STATS_MAX_SCRAP = 10;
 
         // HUD
         public static int HUD_MARGIN = 20;
@@ -107,7 +109,7 @@ namespace Unit06
         public static int PLAYER_WIDTH = 50;
         public static int PLAYER_HEIGHT = 100;
         public static int PLAYER_MOVE_VELOCITY = 15;
-        public static int PLAYER_JUMP_VELOCITY = 25;
+        public static int PLAYER_JUMP_VELOCITY = 27;
         public static int PLAYER_DIST_FROM_CENTER_X = 150;
         public static int PLAYER_MIN_RANGE_X = CENTER_X - PLAYER_DIST_FROM_CENTER_X;
         public static int PLAYER_MAX_RANGE_X = CENTER_X + PLAYER_DIST_FROM_CENTER_X;
@@ -120,17 +122,27 @@ namespace Unit06
         public static int ROCKET_HEIGHT = 410;
         public static int ROCKET_DIST_FROM_GROUND = 40;
 
+        // Pop Up Label
+        public static string POP_UP_BACKGROUND = "replace with an image path";
+        public static int POP_UP_FONTSIZE = 0;
+        public static int POP_UP_Y_MARGINE = HUD_MARGIN + 60;
+
+
         // Debree
         public static string DEBREE_GROUP = "debree";
         public static string DEBREE_IMAGE = "Assets/Images/yellow.png";
-        public static int DEBREE_VALUE = -2;
+        public static int DEBREE_VALUE = -1;
+        public static int DEBREE_FREQUENCY = 170;
         public static int DEBREE_WIDTH = 50;
         public static int DEBREE_HEIGHT = 50;
+        public static int DEBREE_MIN_X_VELOCITY = 5;
+        public static int DEBREE_MAX_X_VELOCITY = 10;
 
         // Food
         public static string FOOD_GROUP = "food";
         public static string FOOD_IMAGE = "Assets/Images/red.png";
         public static int FOOD_VALUE = 2;
+        public static int FOOD_FREQUENCY = 1000;
         public static int FOOD_WIDTH = 50;
         public static int FOOD_HEIGHT = 50;
 
@@ -138,6 +150,7 @@ namespace Unit06
         public static string WATER_GROUP = "water";
         public static string WATER_IMAGE = "Assets/Images/blue.png";
         public static int WATER_VALUE = 1;
+        public static int WATER_FREQUENCY = 300;
         public static int WATER_WIDTH = 50;
         public static int WATER_HEIGHT = 50;
 
@@ -145,6 +158,7 @@ namespace Unit06
         public static string SCRAP_GROUP = "scrap";
         public static string SCRAP_IMAGE = "Assets/Images/gray.png";
         public static int SCRAP_VALUE = 1;
+        public static int SCRAP_FREQUENCY = 1000;
         public static int SCRAP_WIDTH = 50;
         public static int SCRAP_HEIGHT = 50;
 

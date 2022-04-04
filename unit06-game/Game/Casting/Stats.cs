@@ -8,15 +8,17 @@ namespace Unit06.Game.Casting
         private int maxLives;
         private int lives;
         private int scrap;
+        private int maxScrap;
 
         /// <summary>
         /// Constructs a new instance stats.
         /// </summary>
-        public Stats(int startingLives, int maxLives, int scrap, bool debug = false) : base(debug)
+        public Stats(int startingLives, int maxLives, int scrap, int maxScrap, bool debug = false) : base(debug)
         {
             this.lives = startingLives;
             this.maxLives = maxLives;
             this.scrap = scrap;
+            this.maxScrap = maxScrap;
         }
 
 
@@ -72,6 +74,20 @@ namespace Unit06.Game.Casting
         public int GetScrapCount()
         {
             return scrap;
+        }
+
+        /// <summary>
+        /// Gets the maximum scrap count (amoount needed to repair the ship).
+        /// </summary>
+        /// <returns>The scrap.</returns>
+        public int GetMaxScrapCount()
+        {
+            return maxScrap;
+        }
+
+        public int GetMissingScrapCount()
+        {
+            return maxScrap - scrap;
         }
 
         /// <summary>

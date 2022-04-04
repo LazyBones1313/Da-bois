@@ -51,10 +51,10 @@ namespace Unit06.Game.Directing
             AddRocket(cast);
             AddPlayer(cast);
             AddStats(cast);
-            AddDebree(cast);
-            AddFood(cast);
-            AddWater(cast);
-            AddScrap(cast);
+            // AddDebree(cast);
+            // AddFood(cast);
+            // AddWater(cast);
+            // AddScrap(cast);
             AddHealthDisplay(cast);
             AddScrapCountDisplay(cast);
             AddScreen(cast);
@@ -200,7 +200,7 @@ namespace Unit06.Game.Directing
 
         private void AddStats(Cast cast)
         {
-            Stats stats = new Stats(Constants.STATS_STARTING_LIVES, Constants.STATS_MAX_LIVES, Constants.STATS_NUM_SCRAP);
+            Stats stats = new Stats(Constants.STATS_STARTING_LIVES, Constants.STATS_MAX_LIVES, Constants.STATS_NUM_SCRAP, Constants.STATS_MAX_LIVES);
             cast.AddActor(Constants.STATS_GROUP, stats);
         }
 
@@ -225,79 +225,63 @@ namespace Unit06.Game.Directing
             cast.AddActor(Constants.SCRAP_DISPLAY_GROUP, label);   
         }
 
-        private void AddDebree(Cast cast)
-        {
-            cast.ClearActors(Constants.DEBREE_GROUP);
+        // private void AddDebree(Cast cast)
+        // {
+        //     cast.ClearActors(Constants.DEBREE_GROUP);
 
-            int x = Constants.ROOM_WIDTH - (Constants.DEBREE_WIDTH + 400);
-            int y = Constants.GROUND_Y - Constants.DEBREE_HEIGHT;
+        //     int x = Constants.ROOM_WIDTH - (Constants.DEBREE_WIDTH + 400);
+        //     int y = Constants.GROUND_Y - Constants.DEBREE_HEIGHT;
 
-            Point position = new Point(x, y);
-            Point size = new Point(Constants.DEBREE_WIDTH, Constants.DEBREE_HEIGHT);
-            Point velocity = new Point(0, 0);
+        //     Point position = new Point(x, y);
+        //     Point size = new Point(Constants.DEBREE_WIDTH, Constants.DEBREE_HEIGHT);
+        //     Point velocity = new Point(0, 0);
 
-            Body body = new Body(position, size, velocity);
-            Image image = new Image(Constants.DEBREE_IMAGE);
-            Item item = new Item(body, image, Constants.DEBREE_VALUE);       
+        //     Body body = new Body(position, size, velocity);
+        //     Image image = new Image(Constants.DEBREE_IMAGE);
+        //     Item item = new Item(body, image, Constants.DEBREE_VALUE);       
 
-            cast.AddActor(Constants.DEBREE_GROUP, item);
-        }
-
-
-        private void AddScrap(Cast cast)
-        {
-            cast.ClearActors(Constants.SCRAP_GROUP);
-
-            int x = Constants.ROOM_WIDTH - (Constants.SCRAP_WIDTH + 800);
-            int y = Constants.GROUND_Y - Constants.SCRAP_HEIGHT;
-
-            Point position = new Point(x, y);
-            Point size = new Point(Constants.SCRAP_WIDTH, Constants.SCRAP_HEIGHT);
-            Point velocity = new Point(0, 0);
-
-            Body body = new Body(position, size, velocity);
-            Image image = new Image(Constants.SCRAP_IMAGE);
-            Item item = new Item(body, image, Constants.SCRAP_VALUE);       
-
-            cast.AddActor(Constants.SCRAP_GROUP, item);
-        }
-
-        private void AddFood(Cast cast)
-        {
-            cast.ClearActors(Constants.FOOD_GROUP);
-
-            int x = Constants.ROOM_WIDTH - (Constants.FOOD_WIDTH + 1200);
-            int y = Constants.GROUND_Y - Constants.FOOD_HEIGHT;
-
-            Point position = new Point(x, y);
-            Point size = new Point(Constants.FOOD_WIDTH, Constants.FOOD_HEIGHT);
-            Point velocity = new Point(0, 0);
-
-            Body body = new Body(position, size, velocity);
-            Image image = new Image(Constants.FOOD_IMAGE);
-            Item item = new Item(body, image, Constants.FOOD_VALUE);       
-
-            cast.AddActor(Constants.FOOD_GROUP, item);
-        }
+        //     cast.AddActor(Constants.DEBREE_GROUP, item);
+        // }
 
 
-        private void AddWater(Cast cast)
-        {
-            cast.ClearActors(Constants.WATER_GROUP);
+        // private void AddScrap(Cast cast)
+        // {
+        //     cast.ClearActors(Constants.SCRAP_GROUP);
 
-            int x = Constants.ROOM_WIDTH - (Constants.WATER_WIDTH + 1600);
-            int y = Constants.GROUND_Y - Constants.WATER_HEIGHT;
+        //     int x = Constants.ROOM_WIDTH - (Constants.SCRAP_WIDTH + 800);
+        //     int y = Constants.GROUND_Y - Constants.SCRAP_HEIGHT;
 
-            Point position = new Point(x, y);
-            Point size = new Point(Constants.WATER_WIDTH, Constants.WATER_HEIGHT);
-            Point velocity = new Point(0, 0);
+        //     Point position = new Point(x, y);
+        //     Point size = new Point(Constants.SCRAP_WIDTH, Constants.SCRAP_HEIGHT);
+        //     Point velocity = new Point(0, 0);
 
-            Body body = new Body(position, size, velocity);
-            Image image = new Image(Constants.WATER_IMAGE);
-            Item item = new Item(body, image, Constants.WATER_VALUE);       
+        //     Body body = new Body(position, size, velocity);
+        //     Image image = new Image(Constants.SCRAP_IMAGE);
+        //     Item item = new Item(body, image, Constants.SCRAP_VALUE);       
 
-            cast.AddActor(Constants.WATER_GROUP, item);
-        }
+        //     cast.AddActor(Constants.SCRAP_GROUP, item);
+        // }
+
+        // private void AddFood(Cast cast)
+        // {
+        //     cast.ClearActors(Constants.FOOD_GROUP);
+
+        //     int x = Constants.ROOM_WIDTH - (Constants.FOOD_WIDTH + 1200);
+        //     int y = Constants.GROUND_Y - Constants.FOOD_HEIGHT;
+
+        //     Point position = new Point(x, y);
+        //     Point size = new Point(Constants.FOOD_WIDTH, Constants.FOOD_HEIGHT);
+        //     Point velocity = new Point(0, 0);
+
+        //     Body body = new Body(position, size, velocity);
+        //     Image image = new Image(Constants.FOOD_IMAGE);
+        //     Item item = new Item(body, image, Constants.FOOD_VALUE);       
+
+        //     cast.AddActor(Constants.FOOD_GROUP, item);
+        // }
+
+
+
 
 
 
@@ -342,7 +326,16 @@ namespace Unit06.Game.Directing
         {
             script.AddAction(Constants.UPDATE, new MovePlayerAction());
             script.AddAction(Constants.UPDATE, new MoveScreenAction());
-            script.AddAction(Constants.UPDATE, new ApplyGravityAction());
+            script.AddAction(Constants.UPDATE, new MoveFallingItemsAction());
+            script.AddAction(Constants.UPDATE, new MoveDebreeAction());
+            script.AddAction(Constants.UPDATE, new AddFallingItemAction(Constants.WATER_GROUP, Constants.WATER_IMAGE, Constants.WATER_WIDTH, Constants.WATER_HEIGHT, Constants.WATER_VALUE, Constants.WATER_FREQUENCY));
+            script.AddAction(Constants.UPDATE, new AddFallingItemAction(Constants.FOOD_GROUP, Constants.FOOD_IMAGE, Constants.FOOD_WIDTH, Constants.FOOD_HEIGHT, Constants.FOOD_VALUE, Constants.FOOD_FREQUENCY));
+            script.AddAction(Constants.UPDATE, new AddFallingItemAction(Constants.SCRAP_GROUP, Constants.SCRAP_IMAGE, Constants.SCRAP_WIDTH, Constants.SCRAP_HEIGHT, Constants.SCRAP_VALUE, Constants.SCRAP_FREQUENCY));
+            script.AddAction(Constants.UPDATE, new AddDebreeAction(Constants.DEBREE_FREQUENCY));
+            script.AddAction(Constants.UPDATE, new ApplyGravityAction(Constants.PLAYER_GROUP));
+            script.AddAction(Constants.UPDATE, new ApplyGravityAction(Constants.WATER_GROUP));
+            script.AddAction(Constants.UPDATE, new ApplyGravityAction(Constants.FOOD_GROUP));
+            script.AddAction(Constants.UPDATE, new ApplyGravityAction(Constants.SCRAP_GROUP));
             script.AddAction(Constants.UPDATE, new CollideItemsAction(PhysicsService));
             // script.AddAction(Constants.UPDATE, new CollideBordersAction(PhysicsService, AudioService));
         }

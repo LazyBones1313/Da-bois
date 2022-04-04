@@ -30,7 +30,7 @@ namespace Unit06.Game.Casting
         /// Gets the label's position.
         /// </summary>
         /// <returns>The position.</returns>
-        public Point GetPosition()
+        public virtual Point GetPosition()
         {
             return position;
         }

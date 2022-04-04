@@ -1,20 +1,23 @@
 using Unit06.Game.Casting;
+using System.Collections.Generic;
 
 namespace Unit06.Game.Scripting
 {
     public class ApplyGravityAction : Action
     {
-        public ApplyGravityAction()
+        private string group;
+        public ApplyGravityAction(string group)
         {
+            this.group = group;
         }
 
         public void Execute(Cast cast, Script script, ActionCallback callback)
         {
-            Player player = (Player) cast.GetFirstActor(Constants.PLAYER_GROUP);
-            Body body = player.GetBody();
-            player.FallOn(Constants.GROUND_Y, Constants.GRAVITY_ACCELERATION);
-            
-      
+            List<Actor> actors = cast.GetActors(group);
+            foreach (RoomActor roomActor in actors)
+            {
+                roomActor.FallOn(Constants.GROUND_Y, Constants.GRAVITY_ACCELERATION);
+            }      
         }
     }
 }

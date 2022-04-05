@@ -5,20 +5,26 @@ namespace Unit06.Game.Casting
     /// </summary>
     public class Player : RoomActor
     {
-        public Player(Body body, Image image, bool debug = false) : base(debug)
+        private string rightImgFile;
+        private string leftImgFile; 
+        public Player(Body body, string rightImgFile, string leftImgFile, bool debug = false) : base(debug)
         {
             base.SetBody(body);
-            base.SetImage(image);
+            this.rightImgFile = rightImgFile;
+            this.leftImgFile = leftImgFile;
+            base.SetImage(new Image(rightImgFile));
         }
 
         public void MoveLeft()
         {
             base.GetBody().GetVelocity().SetX(-Constants.PLAYER_MOVE_VELOCITY);
+            base.SetImage(new Image(leftImgFile));
         }
 
         public void MoveRight()
         {
             base.GetBody().GetVelocity().SetX(Constants.PLAYER_MOVE_VELOCITY);
+            base.SetImage(new Image(rightImgFile));
         }
         public void StopMoving()
         {

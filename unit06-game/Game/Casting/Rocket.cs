@@ -5,18 +5,24 @@ namespace Unit06.Game.Casting
     /// </summary>
     public class Rocket : RoomActor
     {
-        // private PopUpLabel rocketMsg;
+        private PopUpLabel rocketMsg;
         private bool repaired = false;
 
-        public Rocket(Body body, Image image, bool debug = false) : base(debug)
+        public Rocket(Body body, Image image, PopUpLabel rocketMsg, bool debug = false) : base(debug)
         {
             base.SetBody(body);
             base.SetImage(image);
+            this.rocketMsg = rocketMsg;
         }
 
         public bool IsRepaired()
         {
             return repaired;
+        }
+
+        public PopUpLabel GetPopUpLabel()
+        {
+            return rocketMsg;
         }
 
         public void SetRepaired(bool repaired)

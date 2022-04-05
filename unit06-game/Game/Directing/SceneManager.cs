@@ -27,17 +27,17 @@ namespace Unit06.Game.Directing
             {
                 PrepareNewGame(cast, script);
             }
-            else if (scene == Constants.NEXT_LEVEL)
+            else if (scene == Constants.LAUNCH_ROCKET)
             {
-                PrepareNextLevel(cast, script);
-            }
-            else if (scene == Constants.TRY_AGAIN)
-            {
-                PrepareTryAgain(cast, script);
+                PrepareLaunchRocket(cast, script);
             }
             else if (scene == Constants.IN_PLAY)
             {
                 PrepareInPlay(cast, script);
+            }
+            else if (scene == Constants.YOU_WIN)
+            {
+                PrepareYouWin(cast, script);
             }
             else if (scene == Constants.GAME_OVER)
             {
@@ -47,17 +47,33 @@ namespace Unit06.Game.Directing
 
         private void PrepareNewGame(Cast cast, Script script)
         {
+            cast.ClearAllActors();
+
             AddRoom(cast);
+            AddScreen(cast);
+            AddDialog(cast, Constants.ENTER_TO_START);
+
+            script.ClearAllActions();
+            AddInitActions(script);
+            AddLoadActions(script);
+
+            ChangeSceneAction a = new ChangeSceneAction(KeyboardService, Constants.IN_PLAY);
+            script.AddAction(Constants.INPUT, a);
+
+            AddSceneOutputActions(script);
+            AddUnloadActions(script);
+            AddReleaseActions(script);
+        }
+
+        private void PrepareInPlay(Cast cast, Script script)
+        {
+            cast.ClearActors(Constants.DIALOG_GROUP);
+
             AddRocket(cast);
             AddPlayer(cast);
             AddStats(cast);
-            // AddDebree(cast);
-            // AddFood(cast);
-            // AddWater(cast);
-            // AddScrap(cast);
             AddHealthDisplay(cast);
             AddScrapCountDisplay(cast);
-            AddScreen(cast);
 
             script.ClearAllActions();
             AddInitActions(script);
@@ -66,73 +82,76 @@ namespace Unit06.Game.Directing
             ControlPlayerAction c = new ControlPlayerAction(KeyboardService);
             script.AddAction(Constants.INPUT, c);
 
+            EnterRocketAction l = new EnterRocketAction(KeyboardService, PhysicsService, Constants.LAUNCH_ROCKET);
+            script.AddAction(Constants.INPUT, l);
+
             AddUpdateActions(script);
-            AddOutputActions(script);
+            AddInPlayOutputActions(script);
             AddUnloadActions(script);
             AddReleaseActions(script);
         }
 
-
-        private void PrepareNextLevel(Cast cast, Script script)
+        private void PrepareLaunchRocket(Cast cast, Script script)
         {
-            // AddBall(cast);
-            // AddBricks(cast);
-            // AddRacket(cast);
-            // AddDialog(cast, Constants.PREP_TO_LAUNCH);
+            ClearInPlayActors(cast);
 
-            // script.ClearAllActions();
+            AddRocket(cast);
 
-            // TimedChangeSceneAction ta = new TimedChangeSceneAction(Constants.IN_PLAY, 2, DateTime.Now);
-            // script.AddAction(Constants.INPUT, ta);
+            script.ClearAllActions();
+            AddInitActions(script);
+            AddLoadActions(script);
 
-            // AddOutputActions(script);
+            LaunchRocketAction l = new LaunchRocketAction(
+                Constants.YOU_WIN, Constants.ROCKET_IMG_CHANGE_DELAY, Constants.ROCKET_LAUNCH_DELAY, 
+                Constants.ROCKET_SCENE_CHANGE_DELAY, DateTime.Now);
+            script.AddAction(Constants.INPUT, l);
 
-            // PlaySoundAction sa = new PlaySoundAction(AudioService, Constants.WELCOME_SOUND);
-            // script.AddAction(Constants.OUTPUT, sa);
+            script.AddAction(Constants.UPDATE, new MoveRocketAction());
+
+            script.AddAction(Constants.OUTPUT, new StartDrawingAction(VideoService));
+            script.AddAction(Constants.OUTPUT, new DrawRoomActorAction(VideoService, Constants.ROOM_GROUP));
+            script.AddAction(Constants.OUTPUT, new DrawRoomActorAction(VideoService, Constants.ROCKET_GROUP));
+            script.AddAction(Constants.OUTPUT, new EndDrawingAction(VideoService));
+            AddUnloadActions(script);
+            AddReleaseActions(script);
         }
 
-        private void PrepareTryAgain(Cast cast, Script script)
+        private void PrepareYouWin(Cast cast, Script script)
         {
-            // AddBall(cast);
-            // AddRacket(cast);
-            // AddDialog(cast, Constants.PREP_TO_LAUNCH);
+            AddDialog(cast, Constants.YOU_WIN_MSG);
 
-            // script.ClearAllActions();
-            
-            // TimedChangeSceneAction ta = new TimedChangeSceneAction(Constants.IN_PLAY, 2, DateTime.Now);
-            // script.AddAction(Constants.INPUT, ta);
-            
-            // AddUpdateActions(script);
-            // AddOutputActions(script);
-        }
+            script.ClearAllActions();
+            AddInitActions(script);
+            AddLoadActions(script);
 
-        private void PrepareInPlay(Cast cast, Script script)
-        {
-            // ActivateBall(cast);
-            // cast.ClearActors(Constants.DIALOG_GROUP);
+            TimedChangeSceneAction t = new TimedChangeSceneAction(Constants.NEW_GAME, 3, DateTime.Now);
+            script.AddAction(Constants.INPUT, t);
 
-            // script.ClearAllActions();
-
-            // ControlRacketAction action = new ControlRacketAction(KeyboardService);
-            // script.AddAction(Constants.INPUT, action);
-
-            // AddUpdateActions(script);    
-            // AddOutputActions(script);
-        
+            AddSceneOutputActions(script);
+            AddUnloadActions(script);
+            AddReleaseActions(script);
         }
 
         private void PrepareGameOver(Cast cast, Script script)
         {
-            // AddBall(cast);
-            // AddRacket(cast);
-            // AddDialog(cast, Constants.WAS_GOOD_GAME);
+            cast.ClearActors(Constants.PLAYER_GROUP);
 
-            // script.ClearAllActions();
+            AddDialog(cast, Constants.WAS_GOOD_GAME);
 
-            // TimedChangeSceneAction ta = new TimedChangeSceneAction(Constants.NEW_GAME, 5, DateTime.Now);
-            // script.AddAction(Constants.INPUT, ta);
+            script.ClearAllActions();
+            AddInitActions(script);
+            AddLoadActions(script);
 
-            // AddOutputActions(script);
+            TimedChangeSceneAction t = new TimedChangeSceneAction(Constants.NEW_GAME, 3, DateTime.Now);
+            script.AddAction(Constants.INPUT, t);
+
+            script.AddAction(Constants.OUTPUT, new StartDrawingAction(VideoService));
+            script.AddAction(Constants.OUTPUT, new DrawRoomActorAction(VideoService, Constants.ROOM_GROUP));
+            script.AddAction(Constants.OUTPUT, new DrawRoomActorAction(VideoService, Constants.ROCKET_GROUP));
+            script.AddAction(Constants.OUTPUT, new DrawDialogAction(VideoService));
+            script.AddAction(Constants.OUTPUT, new DrawItemsAction(VideoService));
+            script.AddAction(Constants.OUTPUT, new DrawHudAction(VideoService));
+            script.AddAction(Constants.OUTPUT, new EndDrawingAction(VideoService));
         }
 
         // -----------------------------------------------------------------------------------------
@@ -151,8 +170,7 @@ namespace Unit06.Game.Directing
             Point velocity = new Point(0, 0);
 
             Body body = new Body(position, size, velocity);
-            Image image = new Image(Constants.PLAYER_IMAGE);
-            Player player = new Player(body, image);
+            Player player = new Player(body, Constants.PLAYER_RIGHT_IMAGE, Constants.PLAYER_LEFT_IMAGE);
 
             cast.AddActor(Constants.PLAYER_GROUP, player);
         }
@@ -169,7 +187,14 @@ namespace Unit06.Game.Directing
 
             Body body = new Body(position, size, velocity);
             Image image = new Image(Constants.ROCKET_IMAGE);
-            Rocket rocket = new Rocket(body, image);       
+
+            Text text = new Text("", Constants.FONT_FILE, Constants.POP_UP_FONTSIZE, Constants.ALIGN_LEFT, Constants.WHITE);
+            Point labelPosition = new Point(Constants.HUD_MARGIN, Constants.POP_UP_Y_MARGIN);
+            Image backgroundImage = new Image(Constants.POP_UP_BACKGROUND);
+
+            PopUpLabel rocketMsg = new PopUpLabel(text, labelPosition, Constants.POP_UP_MARGIN, backgroundImage);
+
+            Rocket rocket = new Rocket(body, image, rocketMsg);       
 
             cast.AddActor(Constants.ROCKET_GROUP, rocket);
         }
@@ -200,7 +225,7 @@ namespace Unit06.Game.Directing
 
         private void AddStats(Cast cast)
         {
-            Stats stats = new Stats(Constants.STATS_STARTING_LIVES, Constants.STATS_MAX_LIVES, Constants.STATS_NUM_SCRAP, Constants.STATS_MAX_LIVES);
+            Stats stats = new Stats(Constants.STATS_STARTING_LIVES, Constants.STATS_MAX_LIVES, Constants.STATS_NUM_SCRAP, Constants.STATS_MAX_SCRAP);
             cast.AddActor(Constants.STATS_GROUP, stats);
         }
 
@@ -225,65 +250,26 @@ namespace Unit06.Game.Directing
             cast.AddActor(Constants.SCRAP_DISPLAY_GROUP, label);   
         }
 
-        // private void AddDebree(Cast cast)
-        // {
-        //     cast.ClearActors(Constants.DEBREE_GROUP);
+        private void AddDialog(Cast cast, string message)
+        {
+            cast.ClearActors(Constants.DIALOG_GROUP);
 
-        //     int x = Constants.ROOM_WIDTH - (Constants.DEBREE_WIDTH + 400);
-        //     int y = Constants.GROUND_Y - Constants.DEBREE_HEIGHT;
+            Text text = new Text(message, Constants.FONT_FILE, Constants.FONT_SIZE, 
+                Constants.ALIGN_CENTER, Constants.BLACK);
+            Point position = new Point(Constants.CENTER_X, Constants.CENTER_Y);
 
-        //     Point position = new Point(x, y);
-        //     Point size = new Point(Constants.DEBREE_WIDTH, Constants.DEBREE_HEIGHT);
-        //     Point velocity = new Point(0, 0);
+            Label label = new Label(text, position);
+            cast.AddActor(Constants.DIALOG_GROUP, label);   
+        }
 
-        //     Body body = new Body(position, size, velocity);
-        //     Image image = new Image(Constants.DEBREE_IMAGE);
-        //     Item item = new Item(body, image, Constants.DEBREE_VALUE);       
-
-        //     cast.AddActor(Constants.DEBREE_GROUP, item);
-        // }
-
-
-        // private void AddScrap(Cast cast)
-        // {
-        //     cast.ClearActors(Constants.SCRAP_GROUP);
-
-        //     int x = Constants.ROOM_WIDTH - (Constants.SCRAP_WIDTH + 800);
-        //     int y = Constants.GROUND_Y - Constants.SCRAP_HEIGHT;
-
-        //     Point position = new Point(x, y);
-        //     Point size = new Point(Constants.SCRAP_WIDTH, Constants.SCRAP_HEIGHT);
-        //     Point velocity = new Point(0, 0);
-
-        //     Body body = new Body(position, size, velocity);
-        //     Image image = new Image(Constants.SCRAP_IMAGE);
-        //     Item item = new Item(body, image, Constants.SCRAP_VALUE);       
-
-        //     cast.AddActor(Constants.SCRAP_GROUP, item);
-        // }
-
-        // private void AddFood(Cast cast)
-        // {
-        //     cast.ClearActors(Constants.FOOD_GROUP);
-
-        //     int x = Constants.ROOM_WIDTH - (Constants.FOOD_WIDTH + 1200);
-        //     int y = Constants.GROUND_Y - Constants.FOOD_HEIGHT;
-
-        //     Point position = new Point(x, y);
-        //     Point size = new Point(Constants.FOOD_WIDTH, Constants.FOOD_HEIGHT);
-        //     Point velocity = new Point(0, 0);
-
-        //     Body body = new Body(position, size, velocity);
-        //     Image image = new Image(Constants.FOOD_IMAGE);
-        //     Item item = new Item(body, image, Constants.FOOD_VALUE);       
-
-        //     cast.AddActor(Constants.FOOD_GROUP, item);
-        // }
-
-
-
-
-
+        private void ClearInPlayActors(Cast cast)
+        {
+            cast.ClearActors(Constants.ROCKET_GROUP);
+            cast.ClearActors(Constants.PLAYER_GROUP);
+            cast.ClearActors(Constants.STATS_GROUP);
+            cast.ClearActors(Constants.LIVES_DISPLAY_GROUP);
+            cast.ClearActors(Constants.ROCKET_GROUP);     
+        }
 
         // -----------------------------------------------------------------------------------------
         // scriptig methods
@@ -300,17 +286,25 @@ namespace Unit06.Game.Directing
             script.AddAction(Constants.LOAD, new LoadAssetsAction(AudioService, VideoService));
         }
 
-        private void AddOutputActions(Script script)
+        private void AddSceneOutputActions(Script script)
+        {
+            script.AddAction(Constants.OUTPUT, new StartDrawingAction(VideoService));
+            script.AddAction(Constants.OUTPUT, new DrawRoomActorAction(VideoService, Constants.ROOM_GROUP));
+            script.AddAction(Constants.OUTPUT, new DrawDialogAction(VideoService));
+            script.AddAction(Constants.OUTPUT, new EndDrawingAction(VideoService));
+        }
+
+        private void AddInPlayOutputActions(Script script)
         {
             script.AddAction(Constants.OUTPUT, new StartDrawingAction(VideoService));
             script.AddAction(Constants.OUTPUT, new DrawRoomActorAction(VideoService, Constants.ROOM_GROUP));
             script.AddAction(Constants.OUTPUT, new DrawRoomActorAction(VideoService, Constants.ROCKET_GROUP));
             script.AddAction(Constants.OUTPUT, new DrawRoomActorAction(VideoService, Constants.PLAYER_GROUP));
-            script.AddAction(Constants.OUTPUT, new DrawHudAction(VideoService));
             script.AddAction(Constants.OUTPUT, new DrawItemsAction(VideoService));
+            script.AddAction(Constants.OUTPUT, new DrawPopUpAction(VideoService, PhysicsService));
+            script.AddAction(Constants.OUTPUT, new DrawHudAction(VideoService));
             script.AddAction(Constants.OUTPUT, new EndDrawingAction(VideoService));
         }
-
         private void AddUnloadActions(Script script)
         {
             script.AddAction(Constants.UNLOAD, new UnloadAssetsAction(AudioService, VideoService));
@@ -337,7 +331,8 @@ namespace Unit06.Game.Directing
             script.AddAction(Constants.UPDATE, new ApplyGravityAction(Constants.FOOD_GROUP));
             script.AddAction(Constants.UPDATE, new ApplyGravityAction(Constants.SCRAP_GROUP));
             script.AddAction(Constants.UPDATE, new CollideItemsAction(PhysicsService));
-            // script.AddAction(Constants.UPDATE, new CollideBordersAction(PhysicsService, AudioService));
+            script.AddAction(Constants.UPDATE, new CheckRepairAction());
+            script.AddAction(Constants.UPDATE, new CheckGameOverAction());
         }
     }
 }

@@ -40,7 +40,7 @@ namespace Unit06
         // COLORS
         public static Color BLACK = new Color(0, 0, 0);
         public static Color WHITE = new Color(255, 255, 255);
-        public static Color PURPLE = new Color(255, 0, 255);
+
 
         // KEYS
         public static string LEFT = "left";
@@ -57,6 +57,8 @@ namespace Unit06
         public static string NEXT_LEVEL = "next_level";
         public static string IN_PLAY = "in_play";
         public static string GAME_OVER = "game_over";
+        public static string YOU_WIN = "you_win";
+        public static string LAUNCH_ROCKET = "launch_rocket";
 
 
 
@@ -105,11 +107,12 @@ namespace Unit06
         
         // Player
         public static string PLAYER_GROUP = "player";
-        public static string PLAYER_IMAGE = "Assets/Images/purple.png";
-        public static int PLAYER_WIDTH = 50;
-        public static int PLAYER_HEIGHT = 100;
-        public static int PLAYER_MOVE_VELOCITY = 15;
-        public static int PLAYER_JUMP_VELOCITY = 27;
+        public static string PLAYER_RIGHT_IMAGE = "Assets/Images/Player/right.png";
+        public static string PLAYER_LEFT_IMAGE = "Assets/Images/Player/left.png";
+        public static int PLAYER_WIDTH = 100;
+        public static int PLAYER_HEIGHT = 200;
+        public static int PLAYER_MOVE_VELOCITY = 13;
+        public static int PLAYER_JUMP_VELOCITY = 30;
         public static int PLAYER_DIST_FROM_CENTER_X = 150;
         public static int PLAYER_MIN_RANGE_X = CENTER_X - PLAYER_DIST_FROM_CENTER_X;
         public static int PLAYER_MAX_RANGE_X = CENTER_X + PLAYER_DIST_FROM_CENTER_X;
@@ -117,49 +120,58 @@ namespace Unit06
 
         // Rocket
         public static string ROCKET_GROUP = "rocket";
-        public static string ROCKET_IMAGE = "Assets/Images/rocket.png";
+        public static string ROCKET_IMAGE = "Assets/Images/Rocket/rocket.png";
+        public static string ROCKET_LAUNCH_IMAGE = "Assets/Images/Rocket/rocket-launch.png";
+        public static string ROCKET_UNREPAIRED_MSG_FORMAT = "{0} more scrap piece(s)\nneeded to repair ship.";
+        public static string ROCKET_REPAIRED_MSG = "Press ENTER to leave.";
         public static int ROCKET_WIDTH = 240;
         public static int ROCKET_HEIGHT = 410;
         public static int ROCKET_DIST_FROM_GROUND = 40;
+        public static int ROCKET_LAUNCH_VELOCITY = 2;
+        public static int ROCKET_IMG_CHANGE_DELAY = 1;
+        public static int ROCKET_LAUNCH_DELAY = 2;
+        public static int ROCKET_SCENE_CHANGE_DELAY = 8;
 
         // Pop Up Label
-        public static string POP_UP_BACKGROUND = "replace with an image path";
-        public static int POP_UP_FONTSIZE = 0;
-        public static int POP_UP_Y_MARGINE = HUD_MARGIN + 60;
+        public static string POP_UP_BACKGROUND = "Assets/Images/pop-up-background.png";
+        public static int POP_UP_FONTSIZE = 18;
+        public static int POP_UP_MARGIN = 15;
+        public static int POP_UP_Y_MARGIN = 65;
+
 
 
         // Debree
         public static string DEBREE_GROUP = "debree";
-        public static string DEBREE_IMAGE = "Assets/Images/yellow.png";
+        public static string DEBREE_IMAGE = "Assets/Images/Items/debris.png";
         public static int DEBREE_VALUE = -1;
-        public static int DEBREE_FREQUENCY = 170;
-        public static int DEBREE_WIDTH = 50;
-        public static int DEBREE_HEIGHT = 50;
+        public static int DEBREE_FREQUENCY = 100;
+        public static int DEBREE_WIDTH = 80;
+        public static int DEBREE_HEIGHT = 80;
         public static int DEBREE_MIN_X_VELOCITY = 5;
         public static int DEBREE_MAX_X_VELOCITY = 10;
 
         // Food
         public static string FOOD_GROUP = "food";
-        public static string FOOD_IMAGE = "Assets/Images/red.png";
+        public static string FOOD_IMAGE = "Assets/Images/Items/potato.png";
         public static int FOOD_VALUE = 2;
-        public static int FOOD_FREQUENCY = 1000;
+        public static int FOOD_FREQUENCY = 500;
         public static int FOOD_WIDTH = 50;
-        public static int FOOD_HEIGHT = 50;
+        public static int FOOD_HEIGHT = 42;
 
         // Water
         public static string WATER_GROUP = "water";
-        public static string WATER_IMAGE = "Assets/Images/blue.png";
+        public static string WATER_IMAGE = "Assets/Images/Items/water-bottle.png";
         public static int WATER_VALUE = 1;
         public static int WATER_FREQUENCY = 300;
-        public static int WATER_WIDTH = 50;
-        public static int WATER_HEIGHT = 50;
+        public static int WATER_WIDTH = 49;
+        public static int WATER_HEIGHT = 60;
 
         // Scrap
         public static string SCRAP_GROUP = "scrap";
-        public static string SCRAP_IMAGE = "Assets/Images/gray.png";
+        public static string SCRAP_IMAGE = "Assets/Images/Items/battery.png";
         public static int SCRAP_VALUE = 1;
-        public static int SCRAP_FREQUENCY = 1000;
-        public static int SCRAP_WIDTH = 50;
+        public static int SCRAP_FREQUENCY = 500;
+        public static int SCRAP_WIDTH = 25;
         public static int SCRAP_HEIGHT = 50;
 
 
@@ -170,16 +182,16 @@ namespace Unit06
         public static int ROOM_WIDTH = 3317;
         public static int ROOM_CENTER_X = ROOM_WIDTH / 2;
 
+
         // SCREEN
         public static string SCREEN_GROUP = "screen";
-
 
 
         // DIALOG
         public static string DIALOG_GROUP = "dialogs";
         public static string ENTER_TO_START = "PRESS ENTER TO START";
-        public static string PREP_TO_LAUNCH = "PREPARING TO LAUNCH";
         public static string WAS_GOOD_GAME = "GAME OVER";
+        public static string YOU_WIN_MSG = "YOU WIN!";
 
     }
 }

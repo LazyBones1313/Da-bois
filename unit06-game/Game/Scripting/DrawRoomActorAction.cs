@@ -17,11 +17,11 @@ namespace Unit06.Game.Scripting
 
         public void Execute(Cast cast, Script script, ActionCallback callback)
         {
-            RoomActor player = (RoomActor) cast.GetFirstActor(group);
+            RoomActor actor = (RoomActor) cast.GetFirstActor(group);
             Screen screen = (Screen) cast.GetFirstActor(Constants.SCREEN_GROUP);
-            Body body = player.GetBody();
+            Body body = actor.GetBody();
 
-            Image image = player.GetImage();
+            Image image = actor.GetImage();
             Point position = body.GetPosition().Subtract(screen.GetBody().GetPosition());
             videoService.DrawImage(image, position);
         }

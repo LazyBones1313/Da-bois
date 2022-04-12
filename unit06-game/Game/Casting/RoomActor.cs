@@ -1,7 +1,7 @@
 namespace Unit06.Game.Casting
 {
     /// <summary>
-    /// A thing that participates in the game thaat is in the room.
+    /// A thing that participates in the game that is in the room.
     /// </summary>
     public class RoomActor : Actor
     {
